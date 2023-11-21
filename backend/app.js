@@ -1,16 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-
+const UserRouter = require("./routes/auth");
 const app = express();
 
 const sequelize = require("./util/database");
 
-const user = require("./model/user")
-const post = require("./model/post")
-const comments = require("./model/comments")
-
 app.use(cors());
 app.use(express.json());
+app.use(UserRouter);
 
 app.post("/", (req, res, next) => {
     console.log("dds");
