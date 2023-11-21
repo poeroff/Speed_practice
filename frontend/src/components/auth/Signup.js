@@ -14,13 +14,14 @@ const Signup = () => {
   const CheckPassword = useRef();
 
   const signuphandler = (event) => {
+    
     event.preventDefault();
     fetch("http://localhost:8080/signup",{
       method : "POST",
       headers : {
-        "Content-Tpye" : "application/json"
+        "Content-Type" : "application/json"
       },
-      body: JSON.stringify({Nickname : Nickname.current.value , UserId : UserId.current.value, Password: Password.current.value ,CheckPassword : CheckPassword.current.value})
+      body: JSON.stringify({ UserId : UserId.current.value, Nickname : Nickname.current.value,  Password: Password.current.value ,CheckPassword : CheckPassword.current.value})
     })
 
   }

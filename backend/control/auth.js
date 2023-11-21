@@ -1,8 +1,8 @@
 const User = require("../model/user");
 
 exports.postsign = async (req, res) => {
-    const { username, Nickname, Password, CheckPassword } = req.body;
-    console.log("heelo")
+    const { UserId, Nickname, Password, CheckPassword } = req.body;
+    console.log(UserId)
     // const isusername = await User.findOne({ where: { username: username } });
 
     // if (isusername) {
