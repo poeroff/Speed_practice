@@ -5,6 +5,10 @@ const app = express();
 
 const sequelize = require("./util/database");
 
+const user = require("./model/user")
+const post = require("./model/post")
+const comments = require("./model/comments")
+
 app.use(cors());
 app.use(express.json());
 

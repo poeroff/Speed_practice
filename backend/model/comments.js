@@ -1,6 +1,7 @@
 const sequelize = require("../util/database");
 const Sequelize = require("sequelize");
 const User = require("./user");
+const Post = require("./post")
 
 const Comment = sequelize.define("comments", {
     commentId: {
