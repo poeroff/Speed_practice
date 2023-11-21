@@ -7,11 +7,12 @@ import Login , {action as Loginaction} from "./components/auth/Login"
 import Signup from "./components/auth/Signup";
 import Mypage from "./components/mypage/Mypage"
 import Post  from "./components/post/Post";
+import Header from "./components/mainpage/header/Header";
 
 //errorElement : <Error></Error>
 const router = createBrowserRouter([
-   {path: "/" ,  children : [
-    {index : true , element : <Root> </Root> },
+   {path: "/" ,element: <Root></Root>, children : [
+    
     {path : "login" , element : <Login></Login>},
     {path : "signup" , element : <Signup> </Signup>},
     {path : "mypage" , element : <Mypage></Mypage>}

@@ -108,7 +108,7 @@ const Header = () => {
 
 
 
-            {!openBasic && <h1 className={classes.title}> SIX SENSE </h1>}
+            {!openBasic && <h1 className={classes.title}><Link to ="/" > SIX SENSE </Link></h1> }
 
 
 

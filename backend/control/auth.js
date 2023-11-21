@@ -1,8 +1,17 @@
 const User = require("../model/user");
 
+const {validationResult} = require("express-validator");
+
 exports.postsign = async (req, res) => {
-    const { UserId, Nickname, Password, CheckPassword } = req.body;
-    console.log(UserId)
+    const { UserId, Nickname, Password } = req.body;
+
+    const error = validationResult(req);
+    if(!error.isEmpty()){
+        console.log(error.array())
+        return res.status(200).json({message : error.array()})
+    }
+    await User.create({userIdname: UserId, Nickname : Nickname, Password : Password})
+    return res.status(200).json({message : []})
     // const isusername = await User.findOne({ where: { username: username } });
 
     // if (isusername) {

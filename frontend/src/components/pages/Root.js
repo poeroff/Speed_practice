@@ -1,13 +1,14 @@
 import Main from "../mainpage/Main"
 import { Outlet, json } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import Header from "../mainpage/header/Header";
 
 const Root = () => {
 
   
     return (
         <>
-        <Main></Main>
+        <Header></Header>
         <main>
          <Outlet></Outlet>
         </main>
