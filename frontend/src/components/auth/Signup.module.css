@@ -3,3 +3,10 @@
     margin-bottom: 5%;
     text-align: center;
 }
+.errormessage{
+    font-size: 1vmax;
+    text-align: center;
+    color: red;
+    margin-bottom: 5%;
+}
+
