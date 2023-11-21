@@ -4,8 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const Root = () => {
 
-    const LoaderDate = useLoaderData();
-    console.log(LoaderDate)
+  
     return (
         <>
         <Main></Main>
