@@ -11,4 +11,6 @@ exports.postsign = async (req, res) => {
     if (CheckPassword !== Password) {
         return res.status(400).json({ errorMessage: "비밀번호가 일치하지 않습니다." });
     }
+    await User.create({ UserId, Nickname, Password });
+    return res.status(200).json({ UserId, Nickname });
 };
