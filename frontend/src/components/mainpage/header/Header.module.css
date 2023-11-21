@@ -1,20 +1,60 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
+
 .Search{
     display:  flex;
-    justify-content: left;
-    width: 100%;
+    justify-content: right;
+    width: 40%;
+    margin-right: 1%;
     
- 
+
+}
+.header{
+    margin: 1%;
    
 }
 .SearchInput{
-    width: 50%;
+    width: 70%;
     border: 1px solid gray;
     border-radius: 5px;
    
     
 }
+.title{
+    white-space: nowrap;
+    font-family: 'Marhey', sans-serif;
+    width: 20%;
+    margin-top: 1%;
+    text-align: center;
 
+}
+
+.mypage{
+    justify-content: center;
+    white-space: nowrap;
+    margin :  2%;
+}
 .Login{
     justify-content: center;
-    margin-right: 10%;
+    white-space: nowrap;
+    margin : 2%;
+
+}
+.post {
+    white-space: nowrap;
+    justify-content: center;
+    margin : 2%;
+}
+.content{
+    white-space: nowrap;
+    justify-content: center;
+    margin : 2%;
+    
+}
+.toggler{
+    justify-content: center;
+    width: 100%;
+}
+.modal {
+    margin-top: 8%;
 }

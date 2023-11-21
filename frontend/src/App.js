@@ -3,19 +3,25 @@ import './App.css';
 import Root , {loader as Rootloader } from "./components/pages/Root";
 import Error from "./components/error/Error"
 import Main   from "./components/mainpage/Main";
-import Login from "./components/auth/Login"
+import Login , {action as Loginaction} from "./components/auth/Login"
 import Signup from "./components/auth/Signup";
+import Mypage from "./components/mypage/Mypage"
+import Post  from "./components/post/Post";
 
-
+//errorElement : <Error></Error>
 const router = createBrowserRouter([
-  {path: "/" , errorElement : <Error></Error> ,children : [
-    {index : true , element : <Root> </Root>},
+   {path: "/" ,  children : [
+    {index : true , element : <Root> </Root> },
     {path : "login" , element : <Login></Login>},
-    {path : "signup" , element : <Signup> </Signup>}
+    {path : "signup" , element : <Signup> </Signup>},
+    {path : "mypage" , element : <Mypage></Mypage>}
+    
     
   ]}
 
 ])
+
+
 
 function App() {
   return (

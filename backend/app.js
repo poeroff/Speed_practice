@@ -11,6 +11,10 @@ app.use(express.json());
 
 
 
+app.post("/", (req,res,next)=>{
+    console.log("dds")
+})
+
 
 
 
