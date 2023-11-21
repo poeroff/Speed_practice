@@ -20,23 +20,23 @@ const Root = () => {
 export default Root;
 
 
-export async function loader() {
-    const response = await fetch('http://localhost:8080')
+// export async function loader() {
+//     const response = await fetch('http://localhost:8080')
   
-    if (!response.ok) {
-        const errormessage =  await response.json()
+//     if (!response.ok) {
+//         const errormessage =  await response.json()
         
-        throw json(
-            { statusText: errormessage.message },
-            {
-              status: response.status
-            }
-          );
+//         throw json(
+//             { statusText: errormessage.message },
+//             {
+//               status: response.status
+//             }
+//           );
      
      
-    } else {
+//     } else {
         
-      const resData = await response.json();
-      return resData.events;
-    }
-  }
+//       const resData = await response.json();
+//       return resData.events;
+//     }
+//   }

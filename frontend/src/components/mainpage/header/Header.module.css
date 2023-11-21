@@ -1,0 +1,20 @@
+.Search{
+    display:  flex;
+    justify-content: left;
+    width: 100%;
+    
+ 
+   
+}
+.SearchInput{
+    width: 50%;
+    border: 1px solid gray;
+    border-radius: 5px;
+   
+    
+}
+
+.Login{
+    justify-content: center;
+    margin-right: 10%;
+}

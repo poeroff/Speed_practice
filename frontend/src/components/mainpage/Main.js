@@ -1,10 +1,14 @@
 
+import Header from "./header/Header";
+import classes from "./Main.module.css"
 
 
 const Main = () => {
+ 
     return (
-        <h1> HELLO </h1>
-    )
+      <Header></Header>
+     
+      );
 }
 
 export default Main;
