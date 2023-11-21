@@ -15,6 +15,8 @@ import {
 } from 'mdb-react-ui-kit';
 import classes from "./Header.module.css"
 import { Link } from 'react-router-dom';
+import userIcon from "../../image/userIcon.png"
+
 
 import Post from '../../post/Post';
 const Header = () => {
@@ -63,7 +65,7 @@ const Header = () => {
                 <MDBModalDialog>
                   <MDBModalContent>
                     <MDBModalHeader>
-                      <MDBModalTitle>게시글 작성</MDBModalTitle>
+                      <MDBModalTitle>게시글 작성(사진 & 동영상)</MDBModalTitle>
                       <MDBBtn className='btn-close' color='none' onClick={toggleOpen}></MDBBtn>
                     </MDBModalHeader>
                     <input placeholder='제목'/> 
@@ -87,7 +89,7 @@ const Header = () => {
                 <MDBModalDialog>
                   <MDBModalContent>
                     <MDBModalHeader>
-                      <MDBModalTitle>게시글 작성</MDBModalTitle>
+                      <MDBModalTitle>게시글 작성(글)</MDBModalTitle>
                       <MDBBtn className='btn-close' color='none' onClick={toggleOpen1}></MDBBtn>
                     </MDBModalHeader>
                    

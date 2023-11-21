@@ -15,10 +15,7 @@ const router = createBrowserRouter([
     {path : "login" , element : <Login></Login>},
     {path : "signup" , element : <Signup> </Signup>},
     {path : "mypage" , element : <Mypage></Mypage>}
-    
-    
   ]}
-
 ])
 
 
