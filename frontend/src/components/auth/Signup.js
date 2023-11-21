@@ -20,7 +20,7 @@ const Signup = () => {
       headers : {
         "Content-Tpye" : "application/json"
       },
-      body: JSON.stringify(Nickname , UserId, Password ,CheckPassword)
+      body: JSON.stringify({Nickname : Nickname.current.value , UserId : UserId.current.value, Password: Password.current.value ,CheckPassword : CheckPassword.current.value})
     })
 
   }
