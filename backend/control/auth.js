@@ -1,4 +1,5 @@
 const User = require("../model/user");
+const jwt = require("jsonwebtoken");
 
 const { validationResult } = require("express-validator");
 
@@ -26,7 +27,7 @@ exports.postsign = async (req, res) => {
 //로그인
 exports.postlogin = async (req, res) => {
     const { UserId, Password } = req.body;
-    const finduser = await User.findOne({ where: { UserId: UserId } });
+    const finduser = await User.findOne({ where: { userIdname: UserId } });
 
     if (!finduser) {
         return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
@@ -34,4 +35,7 @@ exports.postlogin = async (req, res) => {
     if (Password !== finduser.Password) {
         return res.status(400).json({ errorMessage: "패스워드가 일치하지 않습니다." });
     }
+    const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
+    //세션
+    return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
 };
