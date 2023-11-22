@@ -59,7 +59,7 @@ const Header = () => {
   const submithandler = (event) => {
     event.preventDefault();
     setImageSrc(null)
-    Inputpost = null
+    Inputpost.current.value = null
     console.log(imageSrc , Inputpost.current.value)
 
   }
