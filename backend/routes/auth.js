@@ -3,6 +3,7 @@ const router = express.Router();
 const Authcontrol = require("../control/auth");
 const User = require("../model/user");
 const { check } = require("express-validator");
+const Validation = require("../middleware/validation");
 
 router.post(
     "/signup",
@@ -10,12 +11,16 @@ router.post(
         check("UserId", "Please enter a Id with only numbers and text and at least 6 characters.")
             .isLength({ min: 6 })
             .isAlphanumeric()
-            .custom((value, { req }) => {
-                return User.findOne({ where: { userIdname: value } }).then((result) => {
-                    if (result) {
-                        return Promise.reject("userId exists");
-                    }
-                });
+            .custom(async(value, { req }) => {
+                const valid = await User.findAll()
+                if(valid){
+                    return User.findOne({ where: { accountId: value } }).then((result) => {
+                        if (result) {
+                            return Promise.reject("userId exists");
+                        }
+                    });
+                }
+                
             }),
         check("Nickname", "Please enter a Nickname with only numbers and text and at least 3 characters.").isLength({
             min: 3,
@@ -37,4 +42,5 @@ router.post(
 );
 
 router.post("/login", Authcontrol.postlogin);
+
 module.exports = router;
