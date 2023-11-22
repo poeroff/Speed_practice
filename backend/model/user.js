@@ -8,16 +8,16 @@ const User = sequelize.define("users", {
         primaryKey: true,
         allowNull: false,
     },
-    userIdname: {
+    accountId: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
     },
-    Nickname: {
+    nickname: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    Password: {
+    password: {
         type: Sequelize.STRING,
         allowNull: false,
     },

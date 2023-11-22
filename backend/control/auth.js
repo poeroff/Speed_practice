@@ -12,7 +12,7 @@ exports.postsign = async (req, res) => {
         console.log(error.array());
         return res.status(200).json({ message: error.array() });
     }
-    await User.create({ userIdname: UserId, Nickname: Nickname, Password: Password });
+    await User.create({ accountId: UserId, nickname: Nickname, password: Password });
     return res.status(200).json({ message: [] });
     // const isusername = await User.findOne({ where: { username: username } });
 
@@ -27,7 +27,7 @@ exports.postsign = async (req, res) => {
 //로그인
 exports.postlogin = async (req, res) => {
     const { UserId, Password } = req.body;
-    const finduser = await User.findOne({ where: { userIdname: UserId } });
+    const finduser = await User.findOne({ where: { accountId: UserId } });
 
     if (!finduser) {
         return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
@@ -36,6 +36,5 @@ exports.postlogin = async (req, res) => {
         return res.status(400).json({ errorMessage: "패스워드가 일치하지 않습니다." });
     }
     const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
-    //세션
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
 };

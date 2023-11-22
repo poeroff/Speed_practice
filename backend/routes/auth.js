@@ -12,7 +12,7 @@ router.post(
             .isLength({ min: 6 })
             .isAlphanumeric()
             .custom((value, { req }) => {
-                return User.findOne({ where: { identity: value } }).then((result) => {
+                return User.findOne({ where: { accountId: value } }).then((result) => {
                     if (result) {
                         return Promise.reject("userId exists");
                     }

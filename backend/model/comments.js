@@ -1,7 +1,7 @@
 const sequelize = require("../util/database");
 const Sequelize = require("sequelize");
 const User = require("./user");
-const Post = require("./post")
+const Post = require("./post");
 
 const Comment = sequelize.define("comments", {
     commentId: {
@@ -10,7 +10,7 @@ const Comment = sequelize.define("comments", {
         primaryKey: true,
         allowNull: false,
     },
-    Content: {
+    content: {
         type: Sequelize.STRING,
         allowNull: false,
     },
