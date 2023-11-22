@@ -9,9 +9,11 @@ import Mypage from "./components/mypage/Mypage"
 import Post  from "./components/post/Post";
 import Header from "./components/mainpage/header/Header";
 
+
 //errorElement : <Error></Error>
 const router = createBrowserRouter([
    {path: "/" ,element: <Root></Root>, children : [
+    {index : true , element :<Post></Post>},
     
     {path : "login" , element : <Login></Login>},
     {path : "signup" , element : <Signup> </Signup>},

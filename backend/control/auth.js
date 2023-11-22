@@ -38,5 +38,6 @@ exports.postlogin = async (req, res) => {
         return res.status(400).json({ errorMessage: "패스워드가 일치하지 않습니다." });
     }
     const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
-    return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
+    res.header('Authorization', 'Bearer ' + accessToken);
+    return res.status(200).json({ accessToken:  accessToken,  });
 };

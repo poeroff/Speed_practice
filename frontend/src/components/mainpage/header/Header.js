@@ -1,24 +1,16 @@
-import React, { useState ,useRef } from 'react';
+import React, { useState ,useRef, useEffect } from 'react';
 import { AiOutlineUser } from "react-icons/ai";
 import { CgSearchLoading } from "react-icons/cg";
 import { CgLogIn } from "react-icons/cg";
 import { CgMathPlus } from "react-icons/cg";
 import { AiFillHome } from "react-icons/ai";
 import { motion } from "framer-motion"
+import { useSelector, useDispatch } from 'react-redux';
+import { LoginActions } from '../../../store/Login-action';
+import { useNavigate } from 'react-router-dom';
 
 
-import {
-  MDBModal,
-  MDBModalDialog,
-  MDBModalContent,
-  MDBModalHeader,
-  MDBModalTitle,
-  MDBModalBody,
-  MDBModalFooter,
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
+import {MDBModal,MDBModalDialog,MDBModalContent,MDBModalHeader,MDBModalTitle,MDBModalBody,MDBModalFooter,MDBContainer,MDBNavbar,MDBNavbarBrand, MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
 } from 'mdb-react-ui-kit';
 import classes from "./Header.module.css"
 import { Link  } from 'react-router-dom';
@@ -28,6 +20,11 @@ import { Link  } from 'react-router-dom';
 
 import Post from '../../post/Post';
 const Header = () => {
+  const navigate = useNavigate();
+  let sessionStorage = window.sessionStorage;
+  const Login = useSelector((state) => state.login.Loginvalid)
+  const dispatch = useDispatch();
+
   const Inputpost = useRef();
   const [imageSrc, setImageSrc] = useState(null);
       const onUpload = (e) => {
@@ -49,9 +46,18 @@ const Header = () => {
   const [basicModal, setBasicModal] = useState(false);
   const [basicModal1, setBasicModal1] = useState(false);
   const [serarch, setsearch] = useState(false)
+  const [loginsession, setloginsession] = useState();
 
-  const toggleOpen = () => setBasicModal(!basicModal);
-  const toggleOpen1 = () => setBasicModal1(!basicModal1);
+  const toggleOpen = () => {
+    if(Login){
+      setBasicModal(!basicModal)
+    }
+    else {
+      navigate("/login")
+
+    }
+  };
+
   const searchopen = (event) => { event.preventDefault(); setsearch(!serarch) }
 
   const [createproducts, setcreateproducts] = useState(false);
@@ -63,8 +69,11 @@ const Header = () => {
     console.log(imageSrc , Inputpost.current.value)
 
   }
+  const Logouthandler = () =>{
+    sessionStorage.removeItem("loginId")
+    dispatch(LoginActions.Logoutvalid());
 
-
+  }
   return (
     <React.Fragment>
       <MDBNavbar expand='lg' light bgColor='light'>
@@ -87,12 +96,12 @@ const Header = () => {
             </form>
 
             <form className={classes.Login}>
-
-              <Link to="login"><MDBBtn color='primary'><CgLogIn size="25" />Login</MDBBtn> </Link>
+             {!Login  && <Link to="login"><MDBBtn color='primary'><CgLogIn size="25" />Login</MDBBtn> </Link> }
+             {Login  && <Link to="/"><MDBBtn color='primary' onClick={Logouthandler}><CgLogIn size="25" />Logout</MDBBtn> </Link> }
 
             </form>
             <form className={classes.mypage}>
-              <Link to="mypage"><MDBBtn color='primary'> <AiOutlineUser size="25" />My Page</MDBBtn> </Link>
+              <Link to= {Login ? "mypage": "login"}><MDBBtn color='primary'> <AiOutlineUser size="25" />My Page</MDBBtn> </Link>
 
             </form>
 
