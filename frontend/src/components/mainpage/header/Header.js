@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import { AiOutlineUser } from "react-icons/ai";
+import { CgSearchLoading } from "react-icons/cg";
+import { CgLogIn } from "react-icons/cg";
+import { CgMathPlus } from "react-icons/cg";
+import { AiFillHome } from "react-icons/ai";
+import { motion } from "framer-motion"
+
+
 import {
 
   MDBModal,
@@ -23,9 +31,11 @@ const Header = () => {
   const [openBasic, setOpenBasic] = useState(false);
   const [basicModal, setBasicModal] = useState(false);
   const [basicModal1, setBasicModal1] = useState(false);
+  const [serarch, setsearch] = useState(false)
 
   const toggleOpen = () => setBasicModal(!basicModal);
   const toggleOpen1 = () => setBasicModal1(!basicModal1);
+  const searchopen = (event) => { event.preventDefault(); setsearch(!serarch) }
 
   const [createproducts, setcreateproducts] = useState(false);
 
@@ -49,72 +59,86 @@ const Header = () => {
           </MDBNavbarToggler>
 
           <MDBCollapse navbar open={openBasic}>
+
             <form className={classes.Login}>
-
-              <Link to="login"><MDBBtn color='primary'>Login</MDBBtn> </Link>
-
-            </form>
-            <form className={classes.mypage}>
-              <Link to="mypage"><MDBBtn color='primary'>My Page</MDBBtn> </Link>
+              <Link to ="/"><AiFillHome size="40" /></Link>
 
             </form>
-
-            
-              <MDBBtn className={classes.post} onClick={toggleOpen} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat post</MDBBtn>
-              <MDBModal className ={classes.modal} open={basicModal} setOpen={setBasicModal} tabIndex='-1'>
-                <MDBModalDialog>
-                  <MDBModalContent>
-                    <MDBModalHeader>
-                      <MDBModalTitle>게시글 작성(사진 & 동영상)</MDBModalTitle>
-                      <MDBBtn className='btn-close' color='none' onClick={toggleOpen}></MDBBtn>
-                    </MDBModalHeader>
-                    <input placeholder='제목'/> 
-                    <input placeholder='제목'/> 
-                    <input placeholder='제목'/> 
-
-
-                    <MDBModalFooter>
-                      <MDBBtn color='secondary' onClick={toggleOpen}>
-                        Close
-                      </MDBBtn>
-                      <MDBBtn>Save changes</MDBBtn>
-                    </MDBModalFooter>
-                  </MDBModalContent>
-                </MDBModalDialog>
-              </MDBModal>
-
-
-              <MDBBtn className={classes.content} onClick={toggleOpen1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat content</MDBBtn>
-              <MDBModal className ={classes.modal} open={basicModal1} setOpen={setBasicModal1} tabIndex='-1'>
-                <MDBModalDialog>
-                  <MDBModalContent>
-                    <MDBModalHeader>
-                      <MDBModalTitle>게시글 작성(글)</MDBModalTitle>
-                      <MDBBtn className='btn-close' color='none' onClick={toggleOpen1}></MDBBtn>
-                    </MDBModalHeader>
-                   
-                    <MDBModalFooter>
-                      <MDBBtn color='secondary' onClick={toggleOpen1}>
-                        Close
-                      </MDBBtn>
-                      <MDBBtn>Save changes</MDBBtn>
-                    </MDBModalFooter>
-                  </MDBModalContent>
-                </MDBModalDialog>
-              </MDBModal>
-
 
           
 
+            <form className={classes.Login}>
+
+              <Link to="login"><MDBBtn color='primary'><CgLogIn size="25" />Login</MDBBtn> </Link>
+
+            </form>
+            <form className={classes.mypage}>
+              <Link to="mypage"><MDBBtn color='primary'> <AiOutlineUser size="25" />My Page</MDBBtn> </Link>
+
+            </form>
 
 
-            {!openBasic && <h1 className={classes.title}><Link to ="/" > SIX SENSE </Link></h1> }
+
+            <MDBBtn className={classes.post} onClick={toggleOpen} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat post <CgMathPlus size="25" /></MDBBtn>
+            <MDBModal className={classes.modal} open={basicModal} setOpen={setBasicModal} tabIndex='-1'>
+              <MDBModalDialog>
+                <MDBModalContent>
+                  <MDBModalHeader>
+                    <MDBModalTitle>게시글 작성(사진 & 동영상)</MDBModalTitle>
+                    <MDBBtn className='btn-close' color='none' onClick={toggleOpen}></MDBBtn>
+                  </MDBModalHeader>
+                  <input placeholder='제목' />
+                  <input placeholder='제목' />
+                  <input placeholder='제목' />
+
+
+                  <MDBModalFooter>
+                    <MDBBtn color='secondary' onClick={toggleOpen}>
+                      Close
+                    </MDBBtn>
+                    <MDBBtn>Save changes</MDBBtn>
+                  </MDBModalFooter>
+                </MDBModalContent>
+              </MDBModalDialog>
+            </MDBModal>
+
+
+            <MDBBtn className={classes.content} onClick={toggleOpen1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat content <CgMathPlus size="25" /></MDBBtn>
+            <MDBModal className={classes.modal} open={basicModal1} setOpen={setBasicModal1} tabIndex='-1'>
+              <MDBModalDialog>
+                <MDBModalContent>
+                  <MDBModalHeader>
+                    <MDBModalTitle>게시글 작성(글)</MDBModalTitle>
+                    <MDBBtn className='btn-close' color='none' onClick={toggleOpen1}></MDBBtn>
+                  </MDBModalHeader>
+
+                  <MDBModalFooter>
+                    <MDBBtn color='secondary' onClick={toggleOpen1}>
+                      Close
+                    </MDBBtn>
+                    <MDBBtn>Save changes</MDBBtn>
+                  </MDBModalFooter>
+                </MDBModalContent>
+              </MDBModalDialog>
+            </MDBModal>
+            {!openBasic && <h1 className={classes.title}><Link to="/" > SIX SENSE </Link></h1>}
 
 
 
             <form className={classes.Search}>
-              <input type='search' className={classes.SearchInput} placeholder="search..." aria-label='Search' />
-              <MDBBtn color='primary'>Search</MDBBtn>
+              <MDBModal open={serarch} setOpen={setsearch} tabIndex='-1'>
+                <MDBModalDialog className={classes.Ab}>
+                  <MDBModalContent>
+
+                    <input type='search' className={classes.SearchInput} placeholder="search..." aria-label='Search' />
+
+                  </MDBModalContent>
+
+                </MDBModalDialog>
+
+              </MDBModal>
+
+              <MDBBtn color='primary' onClick={searchopen}><CgSearchLoading size="25" />Search</MDBBtn>
             </form>
           </MDBCollapse>
         </MDBContainer>

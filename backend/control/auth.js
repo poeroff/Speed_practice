@@ -4,7 +4,7 @@ const {validationResult} = require("express-validator");
 
 exports.postsign = async (req, res) => {
     const { UserId, Nickname, Password } = req.body;
-
+   
     const error = validationResult(req);
     if(!error.isEmpty()){
         console.log(error.array())

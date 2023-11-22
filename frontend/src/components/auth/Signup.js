@@ -16,7 +16,7 @@ const Signup = () => {
   const CheckPassword = useRef();
   const navigate = useNavigate();
   const [errormessage, seterrormessage] = useState([]);
-  const [errortype, seterrortype] = useState([]);
+  
 
   const signuphandler = (event) => {
 
@@ -26,16 +26,17 @@ const Signup = () => {
       headers: {
         "Content-Type": "application/json"
       },
+     
       body: JSON.stringify({ UserId: UserId.current.value, Nickname: Nickname.current.value, Password: Password.current.value, CheckPassword: CheckPassword.current.value })
     }).then(res => res.json()).then(resData => {
 
       const errorArray = resData.message;
       seterrormessage(prevmsg => errorArray.map(err => (err.msg))); 
-      seterrortype(prevpath => errorArray.map(err => (err.path)));
+      
       console.log("heelo")
       if(errorArray.length === 0 ){
         console.log("heelo")
-        navigate("/")
+        navigate("/login")
 
       }
 
