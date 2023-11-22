@@ -27,12 +27,14 @@ exports.postsign = async (req, res) => {
 //로그인
 exports.postlogin = async (req, res) => {
     const { UserId, Password } = req.body;
+    
     const finduser = await User.findOne({ where: { accountId: UserId } });
+    console.log(finduser)
 
     if (!finduser) {
         return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
     }
-    if (Password !== finduser.Password) {
+    if (Password !== finduser.password) {
         return res.status(400).json({ errorMessage: "패스워드가 일치하지 않습니다." });
     }
     const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
