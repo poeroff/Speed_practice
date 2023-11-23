@@ -52,3 +52,35 @@ exports.postWrite = [
     }
   },
 ];
+
+// 게시글 수정
+exports.updatePost = [
+  isAuth,
+  async (req, res) => {
+    const { postId } = req.params;
+    const { title, content, photo } = req.body;
+
+    // 게시글이 있는지 확인
+    const index = posts.findIndex((post) => `${post.postId}` === postId);
+
+    if (index === -1) {
+      // 게시글이 없는 경우 404 에러 반환
+      return res.status(404).json({ message: "존재하지 않는 게시글입니다." });
+    }
+
+    // 해당 인덱스의 게시글을 찾아 업데이트
+    posts[index] = {
+      ...posts[index],
+      title: title || posts[index].title,
+      content: content || posts[index].content,
+      photo: photo || posts[index].photo,
+    };
+
+    // 업데이트된 게시글 반환
+    res.status(200).json({
+      message: "게시글이 성공적으로 업데이트되었습니다.",
+      updatedPost: posts[index],
+    });
+  },
+];
+// 게시글 삭제!
