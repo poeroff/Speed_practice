@@ -23,13 +23,13 @@ exports.postWrite = [
 
     const errors = validationResult(req);
 
-    let newId;
+    // let newId;
 
-    if (!Post.length) {
-      newId = 1;
-    } else {
-      newId = Post[Post.length - 1].id + 1;
-    }
+    // if (!Post.length) {
+    //   newId = 1;
+    // } else {
+    //   newId = Post[Post.length - 1].id + 1;
+    // }
 
     if (!errors.isEmpty()) {
       console.log(errors.array());
@@ -41,7 +41,6 @@ exports.postWrite = [
         title: title,
         content: content,
         Photo: Photo,
-        postId: newId,
       });
 
       return res
