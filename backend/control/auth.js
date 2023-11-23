@@ -6,7 +6,7 @@ const { validationResult } = require("express-validator");
 //회원가입
 exports.postsign = async (req, res) => {
     const { UserId, Nickname, Password } = req.body;
-   
+
     const error = validationResult(req);
     if (!error.isEmpty()) {
         console.log(error.array());
@@ -27,9 +27,9 @@ exports.postsign = async (req, res) => {
 //로그인
 exports.postlogin = async (req, res) => {
     const { UserId, Password } = req.body;
-    
+
     const finduser = await User.findOne({ where: { accountId: UserId } });
-    console.log(finduser)
+    console.log(finduser);
 
     if (!finduser) {
         return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
