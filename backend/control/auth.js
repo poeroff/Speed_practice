@@ -2,6 +2,7 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 
 const { validationResult } = require("express-validator");
+const { isAuth } = require("../middleware/validation");
 
 //회원가입
 exports.postsign = async (req, res) => {
@@ -43,19 +44,32 @@ exports.postlogin = async (req, res) => {
 
 
 // 회원 정보 조회
-exports.userSearch = async (req, res) => {
-    const { authorization } = req.headers;
-
-    const [authType, authToken] = (authorization || "").split(" ");
-
-    if(authToken && authType === "Bearer") {
-        const Id = jwt.verify(authToken, "wow");
-        res.locals.user = Id;
-
-        const finduser = await User.findOne({ where: { accountId: Id } });
-        return res.status(200).json({ nickname: finduser.Nickname, password: finduser.Password })
+exports.userSearch = [isAuth, async (req, res) => {
+    try {
+      const { userId } = req.params;
+  
+      // 사용자를 데이터베이스에서 찾음
+      const findUser = await User.findOne({ where: { userId: userId } });
+  
+      if (!findUser) {
+        // 사용자를 찾지 못한 경우
+        return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+      }
+  
+      // 사용자를 찾은 경우 해당 사용자의 정보 반환
+      const user = {
+        accountId: findUser.accountId,
+        nickname: findUser.nickname,
+        // 기타 원하는 사용자 정보를 추가할 수 있음
+      };
+  
+      return res.status(200).json({ user });
+    } catch (error) {
+      // 예외 처리
+      console.error(error);
+      return res.status(500).json({ message: "서버 오류" });
     }
-}
+  }];
 
 
 // 회원 정보 수정
