@@ -1,19 +1,19 @@
 const sequelize = require("../util/database");
 const Sequelize = require("sequelize");
 const User = require("./user");
-const Post = require("./post")
+const Post = require("./post");
 
 const Comment = sequelize.define("comments", {
     commentId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
     },
     Content: {
         type: Sequelize.STRING,
-        allowNull: false
-    }
+        allowNull: false,
+    },
 });
 
 Comment.belongsTo(User, { foreignKey: "userId", as: "commenterUser" });

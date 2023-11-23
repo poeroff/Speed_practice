@@ -8,7 +8,7 @@ const Validation = require("../middleware/validation");
 router.post(
     "/signup",
     [
-        check("accountId", "Please enter a Id with only numbers and text and at least 6 characters.")
+        check("UserId", "Please enter a Id with only numbers and text and at least 6 characters.")
             .isLength({ min: 6 })
             .isAlphanumeric()
             .custom(async (value, { req }) => {
