@@ -33,9 +33,13 @@ exports.postsign = async (req, res) => {
 
 //로그인
 exports.postlogin = async (req, res) => {
+<<<<<<< HEAD
+  const { UserId, Password } = req.body;
+=======
     const { UserId, Password } = req.body;
 
     const finduser = await User.findOne({ where: { accountId: UserId } });
+>>>>>>> cb2de2d3270ccce138ee55adb7babae8b2d7fc6f
 
     if (!finduser) {
         return res.status(200).json({ errorMessage: "아이디가 일치하지 않습니다." });
@@ -51,6 +55,8 @@ exports.postlogin = async (req, res) => {
     });
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
 };
+<<<<<<< HEAD
+=======
 
 // 회원 정보 조회
 exports.userSearch = async (req, res) => {
@@ -83,3 +89,4 @@ exports.userCorrection = async (req, res) => {
         return res.status(200).json({ message: [] });
     }
 };
+>>>>>>> cb2de2d3270ccce138ee55adb7babae8b2d7fc6f

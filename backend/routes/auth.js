@@ -42,7 +42,7 @@ router.post(
 
 router.post("/login", Authcontrol.postlogin);
 
-router.get("/userSearch", Authcontrol.userSearch);
-router.post("/userCorrection", Authcontrol.userCorrection);
+// router.get("/userSearch", Authcontrol.userSearch);
+// router.post("/userCorrection", Authcontrol.userCorrection);
 
 module.exports = router;
