@@ -60,27 +60,54 @@ exports.updatePost = [
     const { postId } = req.params;
     const { title, content, photo } = req.body;
 
-    // 게시글이 있는지 확인
+    try {
+      // 게시글이 있는지 확인
+      const posts = await Post.findAll();
+
+      const index = posts.findIndex((post) => `${post.postId}` === postId);
+
+      if (index === -1) {
+        // 게시글이 없는 경우 404 에러 반환
+        return res.status(404).json({ message: "존재하지 않는 게시글입니다." });
+      }
+
+      // 해당 인덱스의 게시글을 찾아 업데이트
+      posts[index].title = title || posts[index].title;
+      posts[index].content = content || posts[index].content;
+      posts[index].photo = photo || posts[index].photo;
+
+      // 업데이트된 게시글을 데이터베이스에 저장
+      await posts[index].save();
+
+      // 업데이트된 게시글 반환
+      res.status(200).json({
+        message: "게시글이 성공적으로 업데이트되었습니다.",
+        updatedPost: posts[index],
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+  },
+];
+// 게시글 삭제!
+
+exports.deletePost = [
+  isAuth,
+  async (req, res) => {
+    const { postId } = req.params;
+    // 게시글 위치 확인
+    const posts = await Post.findAll();
     const index = posts.findIndex((post) => `${post.postId}` === postId);
 
     if (index === -1) {
       // 게시글이 없는 경우 404 에러 반환
       return res.status(404).json({ message: "존재하지 않는 게시글입니다." });
+    } else {
+      //   index.splice(index, 1);
+
+      await posts[index].destroy();
+      res.send({ message: " 게시글이 삭제 되었습니다." });
     }
-
-    // 해당 인덱스의 게시글을 찾아 업데이트
-    posts[index] = {
-      ...posts[index],
-      title: title || posts[index].title,
-      content: content || posts[index].content,
-      photo: photo || posts[index].photo,
-    };
-
-    // 업데이트된 게시글 반환
-    res.status(200).json({
-      message: "게시글이 성공적으로 업데이트되었습니다.",
-      updatedPost: posts[index],
-    });
   },
 ];
-// 게시글 삭제!
