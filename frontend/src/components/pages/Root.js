@@ -2,7 +2,7 @@ import Main from "../mainpage/Main"
 import { Outlet, json } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import Header from "../mainpage/header/Header";
-import Post from "../post/Post";
+
 
 const Root = () => {
 
@@ -10,7 +10,7 @@ const Root = () => {
     return (
         <>
         <Header></Header>
-        <Post></Post>
+        
         <main>
          <Outlet></Outlet>
         </main>

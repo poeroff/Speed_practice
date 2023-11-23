@@ -38,8 +38,9 @@ exports.postlogin = async (req, res) => {
     const finduser = await User.findOne({ where: { accountId: UserId } });
 
     if (!finduser) {
-        return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
+        return res.status(200).json({ errorMessage: "아이디가 일치하지 않습니다." });
     }
+<<<<<<< HEAD
 
     const passwordMatch = await bcrypt.compare(Password, finduser.password);
 
@@ -50,6 +51,14 @@ exports.postlogin = async (req, res) => {
         expiresIn: "12h",
     });
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
+=======
+    if (Password !== finduser.password) {
+        return res.status(200).json({ errorMessage: "패스워드가 일치하지 않습니다." });
+    }
+    const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
+    res.header('Authorization', 'Bearer ' + accessToken);
+    return res.status(200).json({ accessToken:  accessToken,  });
+>>>>>>> e2ee95c80cda026e2ae3737033f5a5a80d04c605
 };
 
 // 회원 정보 조회
