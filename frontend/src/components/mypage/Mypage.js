@@ -1,6 +1,6 @@
 
 import classes from "./Mypage.module.css"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiTwotoneHighlight } from "react-icons/ai";
 
 import {
@@ -23,16 +23,38 @@ import plus from "../image/plus.png"
 import { useState } from "react";
 import Profile from "./Profile";
 import Mypageupdate from "./Mypageupdate";
+import { useSelector } from 'react-redux';
 
 
 const MyPage = () => {
     
     const [updateimg, setupdateimg] = useState(false);
     const [updatemypage, setupdatemypage] = useState(false);
+
+    const [nickname , setnickname] = useState();
     
     const imgtoogle = () => {setupdateimg(!updateimg);};
 
     const updatetoogle = () => setupdatemypage(!updatemypage);
+
+    const accessToken = useSelector(state =>state.login.Loginvalid)
+  
+
+    useEffect(()=>{
+        fetch("http://localhost:8080/userSearch",{
+            method : "GET",
+            headers :{
+                "Content-type" : "application/json",
+                "Authorization" : accessToken
+            },
+        }).then(res => res.json()).then(resData => {
+            setnickname(resData.user.nickname)
+
+        }).catch(err => {
+            console.log(err)
+        })
+
+    },[])
 
     
     return (
@@ -42,7 +64,6 @@ const MyPage = () => {
                     <MDBCol lg="9" xl="7">
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
-
                                 <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '150px' }}>
 
                                     <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
@@ -52,7 +73,7 @@ const MyPage = () => {
                                     </MDBBtn>
                                 </div>
                                 <div className="ms-3" style={{ marginTop: '130px' }}>
-                                    <MDBTypography tag="h5">사람 이름....</MDBTypography>
+                                    <MDBTypography tag="h5">{nickname}</MDBTypography>
                                     <MDBCardText>소개란...</MDBCardText>
                                 </div>
                                 {updateimg && <Profile valid = {imgtoogle} ></Profile>}

@@ -37,7 +37,7 @@ const Mypageupdate = (props) => {
                 "Authorization" : accessToken
             },
         }).then(res => res.json()).then(resData => {
-            console.log(resData)
+            console.log(resData.user.nickname)
 
         }).catch(err => {
             console.log(err)

@@ -3,8 +3,10 @@ const User = require("../model/user");
 
 exports.isAuth = (req, res, next) => {
   const { authorization } = req.headers;
+ 
 
   const [authType, authToken] = (authorization || "").split(" ");
+  console.log(authType , authToken)
 
   if (!authToken || authType !== "Bearer") {
     res.status(400).send({
@@ -14,8 +16,10 @@ exports.isAuth = (req, res, next) => {
   }
 
   try {
-    const Id = jwt.verify(authToken, "wow");
-    res.locals.user = Id;
+    const user = jwt.verify(authToken, "wow");
+   
+    res.locals.user = user.Id;
+   
     next();
   } catch (err) {
     res.status(400).send({
