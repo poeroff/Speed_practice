@@ -55,11 +55,16 @@ exports.postlogin = async (req, res) => {
 // 회원 정보 조회
 exports.userSearch = async (req, res) => {
     const { authorization } = req.headers;
+   
 
     const [authType, authToken] = (authorization || "").split(" ");
+    console.log(authToken)
 
     if (authToken && authType === "Bearer") {
+
         const Id = jwt.verify(authToken, "wow");
+        console.log(Id)
+    
         res.locals.user = Id;
 
         const finduser = await User.findOne({ where: { accountId: Id } });
