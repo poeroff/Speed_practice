@@ -40,3 +40,9 @@ exports.postlogin = async (req, res) => {
     const accessToken = jwt.sign({ Id: finduser.userId }, "wow", { expiresIn: "12h" });
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
 };
+
+
+// 회원 정보 조회
+
+
+// 회원 정보 수정
