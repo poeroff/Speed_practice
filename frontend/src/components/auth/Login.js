@@ -41,10 +41,6 @@ const Login = () =>{
         seterrormessage(errorArray); 
         
        }
-     
-      
-      
-     
     });
   }
     return (
@@ -56,7 +52,7 @@ const Login = () =>{
           <div className="d-flex justify-content-between mx-3 mb-4">
           <Link to ="/signup" className={classes.Forgot}>아이디가 없으신가요?</Link>
           </div>
-          <MDBBtn className="mb-4" type='submit'>Sign in</MDBBtn> 
+          <MDBBtn className="mb-4" type='submit'>Login</MDBBtn> 
         </motion.form>
       );
 }

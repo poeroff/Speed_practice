@@ -10,15 +10,11 @@ import { LoginActions } from '../../../store/Login-action';
 import { useNavigate } from 'react-router-dom';
 
 
-import {MDBModal,MDBModalDialog,MDBModalContent,MDBModalHeader,MDBModalTitle,MDBModalBody,MDBModalFooter,MDBContainer,MDBNavbar,MDBNavbarBrand, MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
+import {MDBModal,MDBModalDialog,MDBModalContent,MDBModalHeader,MDBModalTitle,MDBModalFooter,MDBContainer,MDBNavbar, MDBNavbarToggler, MDBIcon, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
 } from 'mdb-react-ui-kit';
 import classes from "./Header.module.css"
 import { Link  } from 'react-router-dom';
 
-
-
-
-import Post from '../../post/Post';
 const Header = () => {
   const navigate = useNavigate();
   let sessionStorage = window.sessionStorage;
