@@ -3,7 +3,11 @@ const jwt = require("jsonwebtoken");
 
 const { validationResult } = require("express-validator");
 const { isAuth } = require("../path-to-your-isAuth-middleware");
+
 // 게시글 조회
+exports.getWrite = async (req, res) => {
+  res.json(post);
+};
 
 // 게시글 작성
 exports.postWrite = [
@@ -12,6 +16,13 @@ exports.postWrite = [
     const { title, content, photo } = req.body;
 
     const errors = validationResult(req);
+
+    if (!posts.length) {
+      newId = 1;
+    } else {
+      newId = posts[potsts.length - 1].id + 1;
+    }
+
     if (!errors.isEmpty()) {
       console.log(errors.array());
       return res.status(400).json({ message: errors.array() });
