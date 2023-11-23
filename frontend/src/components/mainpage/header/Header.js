@@ -62,11 +62,18 @@ const Header = () => {
 
   const [createproducts, setcreateproducts] = useState(false);
 
-  const submithandler = (event) => {
+  const postsubmithandler = (event) => {
     event.preventDefault();
+
+
+
+
+
+    
     setImageSrc(null)
+    
+    console.log(imageSrc+".png", Inputpost.current.value)
     Inputpost.current.value = null
-    console.log(imageSrc , Inputpost.current.value)
 
   }
   const Logouthandler = () =>{
@@ -102,14 +109,13 @@ const Header = () => {
             </form>
             <form className={classes.mypage}>
               <Link to= {Login ? "mypage": "login"}><MDBBtn color='primary'> <AiOutlineUser size="25" />My Page</MDBBtn> </Link>
-
             </form>
 
 
 
 
             <MDBBtn className={classes.post} onClick={toggleOpen} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat post <CgMathPlus size="25" /></MDBBtn>
-            <form onSubmit={submithandler}>
+            <form onSubmit={postsubmithandler}>
               <MDBModal className={classes.modal} open={basicModal} setOpen={setBasicModal} tabIndex='-1'>
                 <MDBModalDialog>
                   <MDBModalContent>
@@ -176,7 +182,7 @@ const Header = () => {
 
               </MDBModal>
 
-              <MDBBtn color='primary' onClick={searchopen}><CgSearchLoading size="25" />Search</MDBBtn>
+              <MDBBtn color='primary'  onClick={searchopen}><CgSearchLoading size="25" />Search</MDBBtn>
             </form>
           </MDBCollapse>
         </MDBContainer>
