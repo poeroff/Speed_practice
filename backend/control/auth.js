@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const { validationResult } = require("express-validator");
+const { isAuth } = require("../middleware/validation");
 
 //회원가입
 exports.postsign = async (req, res) => {
@@ -33,9 +34,13 @@ exports.postsign = async (req, res) => {
 
 //로그인
 exports.postlogin = async (req, res) => {
+<<<<<<< HEAD
+  const { UserId, Password } = req.body;
+=======
     const { UserId, Password } = req.body;
 
     const finduser = await User.findOne({ where: { accountId: UserId } });
+>>>>>>> cb2de2d3270ccce138ee55adb7babae8b2d7fc6f
 
     if (!finduser) {
         return res.status(200).json({ errorMessage: "아이디가 일치하지 않습니다." });
@@ -50,41 +55,4 @@ exports.postlogin = async (req, res) => {
         expiresIn: "12h",
     });
     return res.status(200).json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });
-};
-
-// 회원 정보 조회
-exports.userSearch = async (req, res) => {
-    const { authorization } = req.headers;
-   
-
-    const [authType, authToken] = (authorization || "").split(" ");
-    console.log(authToken)
-
-    if (authToken && authType === "Bearer") {
-
-        const Id = jwt.verify(authToken, "wow");
-        console.log(Id)
-    
-        res.locals.user = Id;
-
-        const finduser = await User.findOne({ where: { accountId: Id } });
-        return res.status(200).json({ nickname: finduser.Nickname, password: finduser.Password });
-    }
-};
-
-// 회원 정보 수정
-exports.userCorrection = async (req, res) => {
-    const { authorization } = req.headers;
-    const { Nickname, Password } = req.body;
-
-    const [authType, authToken] = (authorization || "").split(" ");
-
-    if (authToken && authType === "Bearer") {
-        const Id = jwt.verify(authToken, "wow");
-        res.locals.user = Id;
-
-        const finduser = await User.findOne({ where: { accountId: Id } });
-
-        return res.status(200).json({ message: [] });
-    }
 };

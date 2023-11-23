@@ -11,15 +11,16 @@ router.post(
         check("UserId", "Please enter a Id with only numbers and text and at least 6 characters.")
             .isLength({ min: 6 })
             .isAlphanumeric()
-            .custom(async (value, { req }) => {
-                const valid = await User.findAll();
-                if (valid) {
+            .custom(async(value, { req }) => {
+                const valid = await User.findAll()
+                if(valid){
                     return User.findOne({ where: { accountId: value } }).then((result) => {
                         if (result) {
                             return Promise.reject("userId exists");
                         }
                     });
                 }
+                
             }),
         check("Nickname", "Please enter a Nickname with only numbers and text and at least 3 characters.").isLength({
             min: 3,
@@ -42,7 +43,11 @@ router.post(
 
 router.post("/login", Authcontrol.postlogin);
 
+<<<<<<< HEAD
+// router.get("/userSearch/:userId", Authcontrol.userSearch);
+=======
 // router.get("/userSearch", Authcontrol.userSearch);
+>>>>>>> 60404cb03813137cee0a5efae4cfd4055418b4fc
 // router.post("/userCorrection", Authcontrol.userCorrection);
 
 module.exports = router;
