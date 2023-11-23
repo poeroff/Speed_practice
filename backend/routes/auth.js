@@ -43,11 +43,11 @@ router.post(
 
 router.post("/login", Authcontrol.postlogin);
 
-<<<<<<< HEAD
+
 // router.get("/userSearch/:userId", Authcontrol.userSearch);
-=======
+
 // router.get("/userSearch", Authcontrol.userSearch);
->>>>>>> 60404cb03813137cee0a5efae4cfd4055418b4fc
+
 // router.post("/userCorrection", Authcontrol.userCorrection);
 
 module.exports = router;
