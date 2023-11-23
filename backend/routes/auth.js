@@ -8,19 +8,18 @@ const Validation = require("../middleware/validation");
 router.post(
     "/signup",
     [
-        check("UserId", "Please enter a Id with only numbers and text and at least 6 characters.")
+        check("accountId", "Please enter a Id with only numbers and text and at least 6 characters.")
             .isLength({ min: 6 })
             .isAlphanumeric()
-            .custom(async(value, { req }) => {
-                const valid = await User.findAll()
-                if(valid){
+            .custom(async (value, { req }) => {
+                const valid = await User.findAll();
+                if (valid) {
                     return User.findOne({ where: { accountId: value } }).then((result) => {
                         if (result) {
                             return Promise.reject("userId exists");
                         }
                     });
                 }
-                
             }),
         check("Nickname", "Please enter a Nickname with only numbers and text and at least 3 characters.").isLength({
             min: 3,
