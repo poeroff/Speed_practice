@@ -88,8 +88,8 @@ const MyPage = () => {
                                     </form>
                                 </div>
                                 <div className="ms-3" style={{ marginTop: '130px' }}>
-                                    <MDBTypography tag="h5">Andy Horwitz</MDBTypography>
-                                    <MDBCardText>New York</MDBCardText>
+                                    <MDBTypography tag="h5">사람 이름....</MDBTypography>
+                                    <MDBCardText>소개란...</MDBCardText>
                                 </div>
 
                                
@@ -104,7 +104,7 @@ const MyPage = () => {
                                                         <MDBBtn className='btn-close' color='none' onClick={updatetoogle}></MDBBtn>
                                                     </MDBModalHeader>
                                                     <MDBInput wrapperClass='mb-4' label='Nickname'  type='text' />
-                                                    <MDBInput wrapperClass='mb-4' label='residence'  type='text'/>
+                                                    <MDBInput wrapperClass='mb-4' label='소개'  type='text'/>
                                               
 
                                     
