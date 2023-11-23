@@ -9,4 +9,7 @@
     color: red;
     margin-bottom: 5%;
 }
+.signupheader{
+    display: flex;
+}
 
