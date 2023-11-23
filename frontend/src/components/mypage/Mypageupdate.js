@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 const Mypageupdate = (props) => {
     const [updatemypage, setupdatemypage] = useState(true);
     const updatetoogle = () => setupdatemypage(!updatemypage);
-    const acessToken = useSelector(state =>state.login.Loginvalid)
+    const accessToken = useSelector(state =>state.login.Loginvalid)
     
 
 
@@ -30,11 +30,11 @@ const Mypageupdate = (props) => {
     }
     const outupdatemodal = () =>{
         
-        fetch("http://localhost:8080/login",{
+        fetch("http://localhost:8080/userSearch",{
             method : "GET",
             headers :{
                 "Content-type" : "application/json",
-                "Authorization" : "Bearer"+ acessToken
+                "Authorization" : accessToken
             },
         }).then(res => res.json()).then(resData => {
             console.log(resData)
