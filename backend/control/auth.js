@@ -29,7 +29,7 @@ exports.postlogin = async (req, res) => {
     const { UserId, Password } = req.body;
     
     const finduser = await User.findOne({ where: { accountId: UserId } });
-    console.log(finduser)
+    console.log(finduser);
 
     if (!finduser) {
         return res.status(400).json({ errorMessage: "아이디가 일치하지 않습니다." });
@@ -43,6 +43,34 @@ exports.postlogin = async (req, res) => {
 
 
 // 회원 정보 조회
+exports.userSearch = async (req, res) => {
+    const { authorization } = req.headers;
+
+    const [authType, authToken] = (authorization || "").split(" ");
+
+    if(authToken && authType === "Bearer") {
+        const Id = jwt.verify(authToken, "wow");
+        res.locals.user = Id;
+
+        const finduser = await User.findOne({ where: { accountId: Id } });
+        return res.status(200).json({ nickname: finduser.Nickname, password: finduser.Password })
+    }
+}
 
 
 // 회원 정보 수정
+exports.userCorrection = async (req, res) => {
+    const { authorization } = req.headers;
+    const { Nickname, Password } = req.body;
+
+    const [authType, authToken] = (authorization || "").split(" ");
+
+    if(authToken && authType === "Bearer") {
+        const Id = jwt.verify(authToken, "wow");
+        res.locals.user = Id;
+
+        const finduser = await User.findOne({ where: { accountId: Id } });
+
+        return res.status(200).json({ message: [] });
+    }
+}
