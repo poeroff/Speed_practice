@@ -20,7 +20,6 @@ router.post(
                         }
                     });
                 }
-                
             }),
         check("Nickname", "Please enter a Nickname with only numbers and text and at least 3 characters.").isLength({
             min: 3,

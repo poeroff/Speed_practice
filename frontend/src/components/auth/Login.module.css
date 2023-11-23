@@ -10,3 +10,9 @@
 form{
     margin: 0 auto;
 }
+.errormessage{
+    font-size: 1vmax;
+    text-align: center;
+    color: red;
+    margin-bottom: 5%;
+}
