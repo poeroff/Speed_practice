@@ -18,7 +18,7 @@ exports.isAuth = (req, res, next) => {
   try {
     const user = jwt.verify(authToken, "wow");
    
-    res.locals.user = user.Id;
+    res.locals.user = user.userId;
    
     next();
   } catch (err) {

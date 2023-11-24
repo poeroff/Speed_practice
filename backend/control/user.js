@@ -42,14 +42,7 @@ exports.userUpdate = [isAuth, async (req, res) => {
       // 사용자를 찾지 못한 경우
       return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
     }
-
-    // 사용자를 찾은 경우 해당 사용자의 정보 반환
-    const user = {
-      // accountId: findUser.accountId,
-      nickname: findUser.nickname,
-      detail: findUser.detail,
-      // 기타 원하는 사용자 정보를 추가할 수 있음
-    };
+    
     console.log(user);
 
     findUser.nickname = nickname || findUser.nickname;
