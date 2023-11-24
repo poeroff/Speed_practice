@@ -18,34 +18,21 @@ exports.getWrite = async (req, res) => {
 // 게시글 작성
 exports.postWrite = [
   isAuth,
-  async (req, res) => {
-    const { title, content, Photo } = req.body;
+   async (req, res) => {
+    const content = req.body.content
+    const image = req.file.path
+    console.log(content, image)
 
-    const errors = validationResult(req);
+   
 
-    // let newId;
-
-    // if (!Post.length) {
-    //   newId = 1;
-    // } else {
-    //   newId = Post[Post.length - 1].id + 1;
-    // }
-
-    if (!errors.isEmpty()) {
-      console.log(errors.array());
-      return res.status(400).json({ message: errors.array() });
-    }
-
+ 
     try {
       await Post.create({
-        title: title,
         content: content,
-        Photo: Photo,
+        image : image
       });
 
-      return res
-        .status(200)
-        .json({ message: "게시물이 성공적으로 생성되었습니다." });
+      return res.status(200).json({ message: "게시물이 성공적으로 생성되었습니다." });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: "내부 서버 오류" });
@@ -58,7 +45,7 @@ exports.updatePost = [
   isAuth,
   async (req, res) => {
     const { postId } = req.params;
-    const { title, content, photo } = req.body;
+    const { content, image } = req.body;
 
     try {
       // 게시글이 있는지 확인
@@ -72,7 +59,7 @@ exports.updatePost = [
       }
 
       // 해당 인덱스의 게시글을 찾아 업데이트
-      posts[index].title = title || posts[index].title;
+     
       posts[index].content = content || posts[index].content;
       posts[index].photo = photo || posts[index].photo;
 

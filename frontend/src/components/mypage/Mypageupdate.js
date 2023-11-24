@@ -20,30 +20,17 @@ import { useSelector } from 'react-redux';
 const Mypageupdate = (props) => {
     const [updatemypage, setupdatemypage] = useState(true);
     const updatetoogle = () => setupdatemypage(!updatemypage);
-    const accessToken = useSelector(state =>state.login.Loginvalid)
+    
     
 
 
     const submithandler = () =>{
+       
         props.valid();
 
     }
     const outupdatemodal = () =>{
-        
-        fetch("http://localhost:8080/userSearch",{
-            method : "GET",
-            headers :{
-                "Content-type" : "application/json",
-                "Authorization" : accessToken
-            },
-        }).then(res => res.json()).then(resData => {
-            console.log(resData)
-
-        }).catch(err => {
-            console.log(err)
-        })
         props.valid();
-
     }
     return (
         <form onSubmit={submithandler}>
@@ -51,7 +38,7 @@ const Mypageupdate = (props) => {
                 <MDBModalDialog>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle className={classes.mypage}> 자기소개 변경</MDBModalTitle>
+                            <MDBModalTitle className={classes.mypage}> 프로필 변경</MDBModalTitle>
                             <MDBBtn className='btn-close' color='none' onClick={updatetoogle}></MDBBtn>
                         </MDBModalHeader>
                         <MDBInput wrapperClass='mb-4' label='Nickname' type='text' />
