@@ -16,7 +16,6 @@ exports.userSearch = [isAuth, async (req, res) => {
       const user = {
         // accountId: findUser.accountId,
         nickname: findUser.nickname,
-        detail: findUser.detail,
         // 기타 원하는 사용자 정보를 추가할 수 있음
       };
       console.log(user);
@@ -32,7 +31,7 @@ exports.userSearch = [isAuth, async (req, res) => {
 
 // 회원 정보 수정
 exports.userUpdate = [isAuth, async (req, res) => {
-  const { nickname, detail } = req.body;
+  const { nickname } = req.body;
 
   try {
     // 사용자를 데이터베이스에서 찾음
@@ -42,11 +41,10 @@ exports.userUpdate = [isAuth, async (req, res) => {
       // 사용자를 찾지 못한 경우
       return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
     }
-    
+
     console.log(user);
 
     findUser.nickname = nickname || findUser.nickname;
-    findUser.detail = detail || findUser.detail;
 
     await findUser.save();
 
