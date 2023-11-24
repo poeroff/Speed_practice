@@ -24,7 +24,7 @@ const User = sequelize.define("users", {
     },
     description: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 });
 
