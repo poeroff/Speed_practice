@@ -22,18 +22,18 @@ const post = require("./model/post");
 const date = new Date();
 const formattedDate = date.toISOString().replace(/:/g, "-").replace(/\..+/, "");
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "image");
-    },
-    filename: (req, file, cb) => {
-        cb(null, formattedDate + "-" + file.originalname);
-    },
+  destination: (req, file, cb) => {
+    cb(null, "image");
+  },
+  filename: (req, file, cb) => {
+    cb(null, formattedDate + "-" + file.originalname);
+  },
 });
 app.use(multer({ storage: storage }).single("image"));
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/image", express.static(path.join(__dirname, "image")));
 
 app.post("/images", (req, res) => {
-    console.log(req.file);
+  console.log(req.file);
 });
 app.use(cors());
 
@@ -43,10 +43,13 @@ app.use(authRouter);
 app.use(userRouter);
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, PATCH, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    next();
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
 });
 
 app.use(UserRouter);
@@ -54,6 +57,6 @@ app.use(PostRouter);
 app.use(searchRouter);
 
 sequelize.sync().then((result) => {
-    console.log("8080번 포트에 연결이 성공하였습니다");
-    app.listen(8080);
+  console.log("8080번 포트에 연결이 성공하였습니다");
+  app.listen(8080);
 });
