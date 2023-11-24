@@ -51,7 +51,7 @@ const Header = (props) => {
  
   return (
     <React.Fragment >
-      <MDBNavbar expand='lg' light bgColor='light'>
+      <MDBNavbar  expand='lg' light bgColor='light'>
         <MDBContainer className={classes.header} fluid>
 
           <MDBNavbarToggler

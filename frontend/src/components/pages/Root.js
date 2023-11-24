@@ -2,10 +2,18 @@ import Main from "../mainpage/Main"
 import { Outlet, json } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import Header from "../mainpage/header/Header";
-import { useSelector } from "react-redux"
+import { useSelector , useDispatch } from "react-redux"
+import { LoginActions } from "../../store/Login-action";
+import classes from"./Root.module.css"
+import { useEffect } from "react";
 
 
 const Root = () => {
+    const dispatch = useDispatch();
+   
+    useEffect(()=>{
+        dispatch(LoginActions.Loginvalid());
+    })
     const Login = useSelector((state) => state.login.Loginvalid)
 
   
@@ -15,7 +23,7 @@ const Root = () => {
         
         
         <main>
-         <Outlet></Outlet>
+         <Outlet ></Outlet>
         </main>
 
         </>

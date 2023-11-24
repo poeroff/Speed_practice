@@ -7,6 +7,7 @@ import MainPost from "./MainPost"
 
 const Main = () => {
   const data = useLoaderData();
+  
  
 
 
@@ -15,11 +16,11 @@ const Main = () => {
   return (
 
     <div>
-
-      {data.map((post, index) => (
-        <MainPost key={index} post={post} />
+      {data.map((item) => (
+        <MainPost content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
       ))}
-
+      
+     
     </div>
 
   )
@@ -41,7 +42,7 @@ export async function loader() {
 
 
   try {
-    const data = await fetch('http://localhost:8080/');
+    const data = await fetch('http://localhost:8080/post');
     return data; // 성공 시 데이터 반환
   } catch (error) {
     console.error("Error loading data:", error);
