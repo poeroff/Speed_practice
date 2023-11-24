@@ -1,9 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Marhey&display=swap');
 
-.mainheader{
-    overflow: hidden;
-}
+
 .Search{
     display:  flex;
     justify-content: right;

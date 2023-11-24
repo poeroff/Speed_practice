@@ -8,6 +8,7 @@ import {
     MDBModalFooter,
     MDBInput,
     MDBBtn,
+    MDBTextArea,
 
     MDBNavbar,
     MDBNavbarBrand,
@@ -19,41 +20,56 @@ import { useSelector } from 'react-redux';
 
 const Mypageupdate = (props) => {
     const [updatemypage, setupdatemypage] = useState(true);
-    const updatetoogle = () => setupdatemypage(!updatemypage);
-    
-    
+    const updatetoogle = () => {setupdatemypage(!updatemypage);  props.valid()};
 
 
-    const submithandler = () =>{
-       
+
+
+    const submithandler = () => {
+
         props.valid();
 
     }
-    const outupdatemodal = () =>{
+    const outupdatemodal = () => {
         props.valid();
     }
     return (
-        <form onSubmit={submithandler}>
-            <MDBModal className={classes.modal} open={updatemypage} setOpen={setupdatemypage} onClick={outupdatemodal} tabIndex='-1'>
-                <MDBModalDialog>
-                    <MDBModalContent>
-                        <MDBModalHeader>
-                            <MDBModalTitle className={classes.mypage}> 프로필 변경</MDBModalTitle>
-                            <MDBBtn className='btn-close' color='none' onClick={updatetoogle}></MDBBtn>
-                        </MDBModalHeader>
-                        <MDBInput wrapperClass='mb-4' label='Nickname' type='text' />
-                        <MDBInput wrapperClass='mb-4' label='소개' type='text' />
-                        <MDBModalFooter>
-                            <MDBBtn color='secondary' onClick={updatetoogle}>
-                                Close
-                            </MDBBtn>
-                            <MDBBtn type="submit">Save changes</MDBBtn>
-                        </MDBModalFooter>
-                    </MDBModalContent>
-                </MDBModalDialog>
-            </MDBModal>
 
-        </form>
+        <MDBModal className={classes.modal} open={updatemypage} setOpen={setupdatemypage} tabIndex='-1'>
+            <MDBModalDialog>
+                <MDBModalContent>
+                    <MDBModalHeader>
+                        <MDBModalTitle className={classes.mypage}> 프로필 변경</MDBModalTitle>
+                        <MDBBtn className='btn-close' color='none' onClick={updatetoogle}></MDBBtn>
+                    </MDBModalHeader>
+                    <MDBModalBody>
+                        <form>
+                            <div className='mb-3'>
+                                    <MDBInput
+                                        labelClass='col-form-label'
+                                        label='Nickname:'
+                                    />
+                            </div>
+                            <div className='mb-3'>
+                                    <MDBTextArea
+                                        
+                                        labelClass='col-form-label'
+                                        label='description:'
+                                    />
+                            </div>
+                        </form>
+                    </MDBModalBody>
+                    <MDBModalFooter>
+                        <MDBBtn color='secondary' onClick={updatetoogle}>
+                            Close
+                        </MDBBtn>
+                        <MDBBtn type="submit">Save changes</MDBBtn>
+                    </MDBModalFooter>
+                </MDBModalContent>
+            </MDBModalDialog>
+        </MDBModal>
+
+
     )
 
 }

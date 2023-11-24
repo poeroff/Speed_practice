@@ -29,10 +29,8 @@ const MyPage = () => {
     
     const [updateimg, setupdateimg] = useState(false);
     const [updatemypage, setupdatemypage] = useState(false);
-
     const [nickname , setnickname] = useState();
-    
-    const imgtoogle = () => {setupdateimg(!updateimg);};
+    const imgtoogle = () => {setupdateimg(!updateimg); console.log("heelo")};
 
     const updatetoogle = () => setupdatemypage(!updatemypage);
 
