@@ -7,7 +7,7 @@ import MainPost from "./MainPost"
 
 const Main = () => {
   const data = useLoaderData();
-  console.log(data)
+ 
 
 
 
@@ -15,9 +15,11 @@ const Main = () => {
   return (
 
     <div>
+
       {data.map((post, index) => (
         <MainPost key={index} post={post} />
       ))}
+
     </div>
 
   )
