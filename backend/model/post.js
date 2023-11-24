@@ -9,7 +9,7 @@ const Post = sequelize.define("posts", {
         primaryKey: true,
         allowNull: false,
     },
- 
+
     content: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -21,5 +21,6 @@ const Post = sequelize.define("posts", {
 });
 
 Post.belongsTo(User, { foreignKey: "userId", as: "poster" });
+Post.belongsTo(User, { foreignKey: "nickname", as: "nicknameUser" });
 
 module.exports = Post;
