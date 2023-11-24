@@ -1,10 +1,16 @@
 const Post = require("../model/post");
 const jwt = require("jsonwebtoken");
-
 const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
 
-// 게시글 조회
+// 게시글 전체 리스트
+
+exports.getPostList = async (req, res) => {
+  const result = await Post.findAll();
+  res.status(200).json(result);
+};
+
+// 특정 게시글 조회
 exports.getWrite = async (req, res) => {
   try {
     const posts = await Post.find();
@@ -18,21 +24,20 @@ exports.getWrite = async (req, res) => {
 // 게시글 작성
 exports.postWrite = [
   isAuth,
-   async (req, res) => {
-    const content = req.body.content
-    const image = req.file.path
-    console.log(content, image)
+  async (req, res) => {
+    const content = req.body.content;
+    const image = req.file.path;
+    console.log(content, image);
 
-   
-
- 
     try {
       await Post.create({
         content: content,
-        image : image
+        image: image,
       });
 
-      return res.status(200).json({ message: "게시물이 성공적으로 생성되었습니다." });
+      return res
+        .status(200)
+        .json({ message: "게시물이 성공적으로 생성되었습니다." });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: "내부 서버 오류" });
@@ -59,7 +64,7 @@ exports.updatePost = [
       }
 
       // 해당 인덱스의 게시글을 찾아 업데이트
-     
+
       posts[index].content = content || posts[index].content;
       posts[index].photo = photo || posts[index].photo;
 
