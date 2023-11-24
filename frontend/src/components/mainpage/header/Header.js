@@ -32,6 +32,7 @@ const Header = (props) => {
   const toggleOpen = () => {
     if(Login){
       setBasicModal(!basicModal)
+      console.log("heelo")
     }
     else {
       navigate("/login")
@@ -49,8 +50,8 @@ const Header = (props) => {
 
  
   return (
-    <React.Fragment className={classes.mainheader}>
-      <MDBNavbar expand='lg' light bgColor='light'>
+    <React.Fragment >
+      <MDBNavbar  expand='lg' light bgColor='light'>
         <MDBContainer className={classes.header} fluid>
 
           <MDBNavbarToggler

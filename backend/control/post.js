@@ -2,24 +2,7 @@ const Post = require("../model/post");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
-
-// 게시글 전체 리스트
-
-exports.getPostList = async (req, res) => {
-  const result = await Post.findAll();
-  res.status(200).json(result);
-};
-
-// 특정 게시글 조회
-exports.getWrite = async (req, res) => {
-  try {
-    const posts = await Post.find();
-    res.json(posts);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "서버 오류" });
-  }
-};
+const path = require("path");
 
 // 게시글 작성
 exports.postWrite = [
@@ -44,6 +27,66 @@ exports.postWrite = [
     }
   },
 ];
+
+// 이미지 불러오기.
+
+exports.getImage = async (req, res) => {
+  const filename = req.params.filename;
+  const imagePath = path.join(__dirname, "uploads", filename);
+
+  res.sendFile(imagePath);
+};
+
+// 게시글 전체 리스트
+
+exports.getPostList = async (req, res) => {
+  try {
+    const posts = await Post.findAll();
+
+    // 게시글 이미지 경로
+    const postsWithImagePaths = posts.map((post) => ({
+      content: post.content,
+      imagePath: post.image ? `/image/${path.basename(post.image)}` : null,
+      
+    }));
+    console.log(postsWithImagePaths)
+
+    res.status(200).json(postsWithImagePaths);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "서버 오류로 인하여 조회할 수 없습니다." });
+  }
+};
+
+// 특정 게시글 조회
+exports.getWrite = async (req, res) => {
+  const postId = req.params.postId;
+
+  try {
+    const post = await Post.findByPk(postId);
+
+    if (!post) {
+      return res.status(404).json({ message: "게시글을 찾을 수 없습니다." });
+    }
+
+    // 이미지 파일의 경로 추가하기.
+    let imagePath;
+
+    if (post.image) {
+      imagePath = `/images/${path.basename(post.image)}`;
+    } else {
+      imagePath = null;
+    }
+
+    return res.status(200).json({
+      content: post.content,
+      imagePath: imagePath,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "서버 오류" });
+  }
+};
 
 // 게시글 수정
 exports.updatePost = [

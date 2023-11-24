@@ -7,7 +7,7 @@ import { useState } from 'react';
 const Profile = (props) => {
 
     const [updatemypage, setupdatemypage] = useState(true);
-    const updatetoogle = () => setupdatemypage(!updatemypage);
+    const updatetoogle = () => {setupdatemypage(!updatemypage);  props.valid() };
 
     const [imageSrc, setImageSrc] = useState(null);
     const onUpload = (e) => {
@@ -22,21 +22,25 @@ const Profile = (props) => {
             };
         });
     }
+    const submithandler = (event) => {
+        updatetoogle()
+        event.preventDefault()
 
 
-    const submithandler = () => {
+       
 
-        props.valid();
+        props.valid()
 
     }
     const outupdatemodal = () => {
-        props.valid();
+        props.valid()
+        
     }
     return (
-        <form onSubmit={submithandler}>
-            <MDBModal className={classes.modal} open={updatemypage} setOpen={setupdatemypage} onClick={outupdatemodal} tabIndex='-1'>
-                <MDBModalDialog>
-                    <MDBModalContent>
+        
+            <MDBModal className={classes.modal} open={updatemypage} setOpen={setupdatemypage}  tabIndex='-1'>
+                <MDBModalDialog onClick={outupdatemodal}>
+                    <MDBModalContent >
                         <MDBModalHeader>
                             <MDBModalTitle className={classes.profile}> 프로필 사진 변경 </MDBModalTitle>
                             <MDBBtn className='btn-close' color='none' onClick={updatetoogle}></MDBBtn>
@@ -47,13 +51,13 @@ const Profile = (props) => {
                             <MDBBtn color='secondary' onClick={updatetoogle}>
                                 Close
                             </MDBBtn>
-                            <MDBBtn type="submit">Save changes</MDBBtn>
+                            <MDBBtn type="submit" onClick={submithandler}>Save changes</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
 
-        </form>
+       
     )
 
 

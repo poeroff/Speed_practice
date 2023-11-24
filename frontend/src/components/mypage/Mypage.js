@@ -23,16 +23,16 @@ import { useState } from "react";
 import Profile from "./Profile";
 import Mypageupdate from "./Mypageupdate";
 import { useSelector } from 'react-redux';
+import { redirect } from "react-router-dom";
 
 
 const MyPage = () => {
     
     const [updateimg, setupdateimg] = useState(false);
     const [updatemypage, setupdatemypage] = useState(false);
-
     const [nickname , setnickname] = useState();
-    
-    const imgtoogle = () => {setupdateimg(!updateimg);};
+    const [description , setdescription] = useState();
+    const imgtoogle = () => {setupdateimg(!updateimg); console.log("heelo")};
 
     const updatetoogle = () => setupdatemypage(!updatemypage);
 
@@ -47,6 +47,7 @@ const MyPage = () => {
                 "Authorization" : accessToken
             },
         }).then(res => res.json()).then(resData => {
+            setdescription(resData.user.description)
             setnickname(resData.user.nickname)
 
         }).catch(err => {
@@ -71,7 +72,7 @@ const MyPage = () => {
                                 </div>
                                 <div className="ms-3" style={{ marginTop: '130px' }}>
                                     <MDBTypography tag="h5">{nickname}</MDBTypography>
-                                    <MDBCardText>소개란...</MDBCardText>
+                                    <MDBCardText>{description}</MDBCardText>
                                 </div>
                                 {updateimg && <Profile valid = {imgtoogle} ></Profile>}
 
