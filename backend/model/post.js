@@ -17,7 +17,7 @@ const Post = sequelize.define("posts", {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    Photo: {
+    photo: {
         type: Sequelize.STRING,
         allowNull: false,
     },

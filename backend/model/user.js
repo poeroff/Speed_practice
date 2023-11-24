@@ -22,7 +22,10 @@ const User = sequelize.define("users", {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    
+    description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
 });
 
 module.exports = User;
