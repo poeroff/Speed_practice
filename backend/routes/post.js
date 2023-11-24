@@ -8,4 +8,6 @@ const Validation = require("../middleware/validation");
 router.post("/post", Postcontrol.postWrite);
 router.put("/update/:postId", Postcontrol.updatePost);
 router.delete("/post/:postId", Postcontrol.deletePost);
+
+
 module.exports = router;

@@ -13,7 +13,6 @@ import {
     MDBModalBody,
     MDBModalFooter,
     MDBInput,
-
     MDBNavbar,
     MDBNavbarBrand,
     MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
@@ -56,7 +55,6 @@ const MyPage = () => {
 
     },[])
 
-    
     return (
         <div className="gradient-custom-2" >
             <MDBContainer className="py-5 h-100"  >
@@ -65,7 +63,6 @@ const MyPage = () => {
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
                                 <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '150px' }}>
-
                                     <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                                         alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
                                     <MDBBtn outline color="dark" onClick={imgtoogle} style={{ height: '36px', overflow: 'visible' }}>

@@ -6,7 +6,8 @@ import classes from "./Main.module.css"
 const Main = () => {
  
     return (
-      <Header></Header>
+      <h1 className={classes.main}>asds</h1>
+      
      
       );
 }

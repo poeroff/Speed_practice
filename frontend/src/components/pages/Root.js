@@ -2,14 +2,17 @@ import Main from "../mainpage/Main"
 import { Outlet, json } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import Header from "../mainpage/header/Header";
+import { useSelector } from "react-redux"
 
 
 const Root = () => {
+    const Login = useSelector((state) => state.login.Loginvalid)
 
   
     return (
         <>
-        <Header></Header>
+        <Header Login = {Login ? true : false}></Header>
+        
         
         <main>
          <Outlet></Outlet>

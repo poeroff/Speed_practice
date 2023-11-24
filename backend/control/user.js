@@ -4,8 +4,6 @@ const { isAuth } = require("../middleware/validation");
 // 회원 정보 조회
 exports.userSearch = [isAuth, async (req, res) => {
     try {
-      
-  
       // 사용자를 데이터베이스에서 찾음
       const findUser = await User.findOne({ where: { userId: res.locals.user } });
   
