@@ -13,13 +13,16 @@ const Post = sequelize.define("posts", {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    
     image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    Like: {
         type: Sequelize.STRING,
         allowNull: false,
     },
 });
 
 Post.belongsTo(User, { foreignKey: "userId", as: "poster" });
-
+Post.belongsTo(User, { foreignKey: "nickname", as: "nicknameUser" });
 module.exports = Post;
