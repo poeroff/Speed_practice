@@ -25,10 +25,8 @@ const Mainpost = (props) => {
         <div className={classes.mainpost}>
             <form>
                 <div  className={classes.postoption}>
-                    <FiAlignJustify size="25" onClick={optionhandler}/>
-                    {option && <div className={classes.abc}>
-                        <p> ajsdhsj</p>
-                    </div>}
+                    <div className={classes.maintitle}> {props.title}</div>
+                  
                 </div>
                 <div className={classes.postimg}>
                     <img className={classes.Mainimg} src={props.imageUrl} />

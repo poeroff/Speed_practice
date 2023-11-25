@@ -2,21 +2,6 @@
 import classes from "./Mypage.module.css"
 import React, { useEffect } from 'react';
 import { AiTwotoneHighlight } from "react-icons/ai";
-
-import {
-
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-    MDBInput,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
-} from 'mdb-react-ui-kit';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 import plus from "../image/plus.png"
 import { useState } from "react";
@@ -50,7 +35,6 @@ const MyPage = () => {
         }).then(res => res.json()).then(resData => {
             setdescription(resData.user.description)
             setnickname(resData.user.nickname)
-            console.log("http://localhost:8080/" + resData.user.imageurl)
             setimageurl(resData.user.imageurl)
 
         }).catch(err => {

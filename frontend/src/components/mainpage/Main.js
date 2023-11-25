@@ -11,6 +11,7 @@ import React from "react";
 const Main = () => {
   const [showButton, setShowButton] = useState(false);
   const data = useLoaderData();
+  console.log(data)
   const handleScroll = () => {
     if (!window.scrollY) return
 
@@ -26,16 +27,13 @@ const Main = () => {
 
   return (
     <React.Fragment >
-    
-
       <div>
         {data.map((item) => (
-          <MainPost content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
+          <MainPost title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
         ))}
       </div>
 
       <div className={classes.topBtn_wrap}>
-
           <BiSolidUpArrowSquare className={classes.topBtn}  onClick={handleScroll} size="50"/>
       </div>
     </React.Fragment>
