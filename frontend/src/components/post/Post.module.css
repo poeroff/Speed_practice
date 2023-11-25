@@ -21,3 +21,6 @@
     text-align: center;
     color: red;
 }
+.modal{
+    z-index: 200;
+}

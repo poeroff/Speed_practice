@@ -4,3 +4,13 @@
     text-align: center;
 
 }
+
+.topBtn_wrap {
+  position: sticky;
+  bottom: 30px;
+  float: right;
+}
+.topBtn {
+  font-size: 3.8rem;
+  color: black 
+}

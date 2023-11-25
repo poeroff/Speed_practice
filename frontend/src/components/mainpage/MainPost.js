@@ -1,18 +1,31 @@
 
+import { useState } from "react";
 import classes from "./Mainpost.module.css"
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
-const Mainpost =(props) =>{
-    console.log(props.content)
-    console.log(props.imageUrl)
-  
+const Mainpost = (props) => {
+    const [Like, setLiek] = useState(false);
+
+    const Likerhandler = () => {
+        setLiek(!Like)
+
+
+    }
+
 
     return (
         <div className={classes.mainpost}>
-            <img className ={classes.Mainimg} src={props.imageUrl}/>
-            <h1 className={classes.content}> {props.content}</h1>
-            
-            
-          
+            <div className={classes.postimg}>
+                <img className={classes.Mainimg} src={props.imageUrl} />
+            </div>
+           
+            <div className={classes.content}>
+                <br></br>
+                {/* {!Like && <AiOutlineHeart size="30" onClick={Likerhandler} />}
+                {Like && <AiFillHeart size="30" onClick={Likerhandler} />} */}
+                <p> {props.content}</p>
+            </div>
         </div>
     )
 }

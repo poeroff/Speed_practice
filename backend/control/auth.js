@@ -53,6 +53,7 @@ exports.postlogin = async (req, res) => {
   const accessToken = jwt.sign({ Id: finduser.userId }, "wow", {
     expiresIn: "12h",
   });
+
   return res
     .status(200)
     .json({ accessToken: "Bearer " + accessToken, message: "로그인 성공!" });

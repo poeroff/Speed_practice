@@ -1,18 +1,44 @@
-
-.Mainimg{
+.Mainimg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 25%;
-    height: 30%;
-    display: flex;
-    margin: 0px auto;
-  
+    height: 100%;
+   
+    object-fit: cover;
+    
+
 }
 
-.content{
+
+.mainpost {
+    width: 100%;
+    overflow-x: hidden;
+    /* 또는 다른 너비를 지정하세요 */
+   
+
+}
+.postimg{
+    position: relative;
+ 
+    width: 100%;
+    padding-top: 15%; 
+    margin: 0 auto;
+    margin-left: 37.5%;
+    align-items: center;
+    margin-top: 1%;
+
+
+}
+
+
+.content {
+    font-weight: bold;
+   
     border: 1px solid gray;
-    display: flex;
-    color: rebeccapurple;
-    justify-content: center;
+    border-left: none;
+    border-right: none;
     margin: 0 auto;
     width: 25%;
-    text-align: center;
+
 }

@@ -37,7 +37,7 @@ exports.userSearch = [
 // 회원 정보 수정
 exports.userUpdate = [isAuth, async (req, res) => {
   const { nickname, description } = req.body;
-  console.log(description)
+  console.log("heelo")
 
   try {
     // 사용자를 데이터베이스에서 찾음
