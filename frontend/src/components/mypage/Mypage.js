@@ -50,7 +50,6 @@ const MyPage = () => {
         }).then(res => res.json()).then(resData => {
             setdescription(resData.user.description)
             setnickname(resData.user.nickname)
-            console.log("http://localhost:8080/" + resData.user.imageurl)
             setimageurl(resData.user.imageurl)
 
         }).catch(err => {
