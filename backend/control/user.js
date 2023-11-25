@@ -1,7 +1,7 @@
 const User = require("../model/user");
 const { isAuth } = require("../middleware/validation");
 
-const sharp = require('sharp');
+
 
 // 회원 정보 조회
 exports.userSearch = [
@@ -27,7 +27,7 @@ exports.userSearch = [
                 // 기타 원하는 사용자 정보를 추가할 수 있음
             };
             
-            console.log(user)
+           
             return res.status(200).json({ user });
         } catch (error) {
             // 예외 처리
