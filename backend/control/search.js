@@ -1,28 +1,24 @@
 const User = require("../model/user");
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 
 //유저정보 검색
 exports.searchId = async (req, res, next) => {
     const { search } = req.params;
     try {
-        
-        const searchUser = await User.findAll({ where: { nickname:  {[Op.like]: `%${search}%`} },  });
-       
-        const searchinfo = []
-        
-        searchUser.map(user=>{
+        const searchUser = await User.findAll({ where: { nickname: { [Op.like]: `%${search}%` } } });
+
+        const searchinfo = [];
+
+        searchUser.map((user) => {
             const userinfo = {
-                userId :user.dataValues.userId,
-                nickname :user.dataValues.nickname
-            }
-            searchinfo.push(userinfo)  
-        })
+                userId: user.dataValues.userId,
+                nickname: user.dataValues.nickname,
+            };
+            searchinfo.push(userinfo);
+        });
         if (!searchUser) {
             return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
         }
-        return res.status(200).json({ searchinfo });
-
-        // return res.status(200).json({ user: searchUser });
         next();
     } catch (error) {
         return res.status(500).json({ message: "서버 오류" });
