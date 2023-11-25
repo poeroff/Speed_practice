@@ -21,9 +21,9 @@
 }
 
 .SearchInput{
-    width: 100%;
-    border: 1px solid gray;
-    border-radius: 5px;
+    
+    white-space: nowrap;
+   
 }
 
 .title{
@@ -81,4 +81,5 @@ img{
     width: 100%;
    
 }
+
 

@@ -25,6 +25,11 @@ const User = sequelize.define("users", {
         type: Sequelize.STRING,
         allowNull: true,
     },
+    imageurl : {
+        type : Sequelize.STRING,
+        allowNull : true
+
+    },
     follow: {
         type: Sequelize.STRING,
         allowNull: true,

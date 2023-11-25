@@ -25,10 +25,25 @@
     padding-top: 15%; 
     margin: 0 auto;
     margin-left: 37.5%;
-    align-items: center;
+    text-align: center;
     margin-top: 1%;
 
 
+}
+.postoption{
+    position: relative;
+ 
+    width: 100%;
+  
+    margin: 0 auto;
+    margin-left: 11%;
+    text-align: center;
+    
+    margin-top: 1%;
+
+}
+.abc{
+    z-index: 100;
 }
 
 
@@ -39,6 +54,7 @@
     border-left: none;
     border-right: none;
     margin: 0 auto;
+    text-align: center;
     width: 25%;
 
 }

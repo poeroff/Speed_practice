@@ -16,6 +16,7 @@ exports.postWrite = [
       await Post.create({
         content: content,
         image: image,
+        Like : 0
       });
 
       return res
@@ -123,7 +124,6 @@ exports.updatePost = [
   },
 ];
 // 게시글 삭제!
-
 exports.deletePost = [
   isAuth,
   async (req, res) => {

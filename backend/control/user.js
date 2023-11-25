@@ -1,6 +1,8 @@
 const User = require("../model/user");
 const { isAuth } = require("../middleware/validation");
 
+const sharp = require('sharp');
+
 // 회원 정보 조회
 exports.userSearch = [
     isAuth,
@@ -20,11 +22,12 @@ exports.userSearch = [
             const user = {
                 // accountId: findUser.accountId,
                 nickname: findUser.nickname,
-                description:findUser.description
+                description:findUser.description,
+                imageurl : findUser.imageurl
                 // 기타 원하는 사용자 정보를 추가할 수 있음
             };
-            console.log(user);
-
+            
+            console.log(user)
             return res.status(200).json({ user });
         } catch (error) {
             // 예외 처리
@@ -34,10 +37,10 @@ exports.userSearch = [
     },
 ];
 
-// 회원 정보 수정
+// 회원 이름 설명 정보 수정
 exports.userUpdate = [isAuth, async (req, res) => {
   const { nickname, description } = req.body;
-  console.log("heelo")
+ 
 
   try {
     // 사용자를 데이터베이스에서 찾음
@@ -55,7 +58,7 @@ exports.userUpdate = [isAuth, async (req, res) => {
       description: findUser.description
       // 기타 원하는 사용자 정보를 추가할 수 있음
     };
-    console.log(user);
+  
 
     findUser.nickname = nickname || findUser.nickname;
     findUser.description = description || findUser.description;
@@ -68,4 +71,16 @@ exports.userUpdate = [isAuth, async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "서버 오류" });
   }
+}];
+
+
+//마이페이지 이미지 업데이트
+
+
+exports.postimg = [isAuth, async (req, res) => {
+  const imageurl = req.file.path;
+  const user = await User.findOne({where : {userId  : res.locals.user}})
+  await user.update({
+    imageurl : imageurl
+  })
 }];

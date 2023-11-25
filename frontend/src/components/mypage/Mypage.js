@@ -32,6 +32,7 @@ const MyPage = () => {
     const [updatemypage, setupdatemypage] = useState(false);
     const [nickname , setnickname] = useState();
     const [description , setdescription] = useState();
+    const [imageurl  , setimageurl] = useState();
     const imgtoogle = () => {setupdateimg(!updateimg); console.log("heelo")};
 
     const updatetoogle = () => setupdatemypage(!updatemypage);
@@ -49,6 +50,8 @@ const MyPage = () => {
         }).then(res => res.json()).then(resData => {
             setdescription(resData.user.description)
             setnickname(resData.user.nickname)
+            console.log("http://localhost:8080/" + resData.user.imageurl)
+            setimageurl(resData.user.imageurl)
 
         }).catch(err => {
             console.log(err)
@@ -63,9 +66,8 @@ const MyPage = () => {
                     <MDBCol lg="9" xl="7">
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
-                                <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '150px' }}>
-                                    <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                                        alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
+                                <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '180px', height:"150px" }}>
+                                    <MDBCardImage className ={classes.mypageimg} src={"http://localhost:8080/" + imageurl} alt="Generic placeholder image" style={{  objectFit: 'cover', zIndex: '1' }} />
                                     <MDBBtn outline color="dark" onClick={imgtoogle} style={{ height: '36px', overflow: 'visible' }}>
                                         Edit profile
                                     </MDBBtn>
