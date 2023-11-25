@@ -53,6 +53,7 @@ exports.getPostList = async (req, res) => {
 
     // 게시글 이미지 경로
     const postsWithImagePaths = posts.map((post) => ({
+      userId : post.userId,
       title : post.nickname,
       content: post.content,
       imagePath: post.image ? `/image/${path.basename(post.image)}` : null,
