@@ -11,11 +11,10 @@ import { useNavigate } from 'react-router-dom';
 import Post from '../../post/Post';
 
 
-import {
-  MDBModal, MDBModalDialog, MDBSwitch, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalFooter, MDBContainer, MDBNavbar, MDBNavbarToggler, MDBIcon, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
-} from 'mdb-react-ui-kit';
+import {MDBModal, MDBModalDialog, MDBSwitch, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalFooter, MDBContainer, MDBNavbar, MDBNavbarToggler, MDBIcon, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,} from 'mdb-react-ui-kit';
 import classes from "./Header.module.css"
 import { Link } from 'react-router-dom';
+import Usersearch from '../../search/Usersearch';
 
 
 const Header = (props) => {
@@ -41,6 +40,7 @@ const Header = (props) => {
 
     }
   };
+  
   const searchopen = (event) => { event.preventDefault(); setsearch(!serarch) }
 
 
@@ -91,21 +91,12 @@ const Header = (props) => {
             {basicModal && <Post valid={toggleOpen}></Post>}
 
             {!openBasic && <h1 className={classes.title}><Link to="/" > SIX SENSE </Link></h1>}
-            <form className={classes.Search}>
-              <MDBModal open={serarch} setOpen={setsearch} tabIndex='-1'>
-                <MDBModalDialog >
-                  <MDBModalContent>
+            
+            
 
-                    <input type='search' className={classes.SearchInput} placeholder="search..." aria-label='Search' />
-
-                  </MDBModalContent>
-
-                </MDBModalDialog>
-
-              </MDBModal>
-
-              <MDBBtn color='primary' onClick={searchopen}><CgSearchLoading size="25" />Search</MDBBtn>
-            </form>
+              <MDBBtn color='primary' className ={classes.SearchInput} onClick={searchopen}><CgSearchLoading size="25" />Search</MDBBtn>
+              {serarch && <Usersearch></Usersearch>}
+            
            
             {/* <MDBSwitch className={classes.switch} onClick={switchhandler}/> */}
           </MDBCollapse>

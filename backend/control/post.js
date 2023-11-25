@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
 const path = require("path");
+const User= require("../model/user")
 
 // 게시글 작성
 exports.postWrite = [
@@ -10,12 +11,17 @@ exports.postWrite = [
   async (req, res) => {
     const content = req.body.content;
     const image = req.file.path;
-    console.log(content, image);
+    const user = await User.findOne({where : {userId :res.locals.user }})
+    console.log(user.nickname)
+  
 
     try {
       await Post.create({
         content: content,
         image: image,
+        Like : 0,
+        userId :res.locals.user,
+        nickname : user.nickname
       });
 
       return res
@@ -123,7 +129,6 @@ exports.updatePost = [
   },
 ];
 // 게시글 삭제!
-
 exports.deletePost = [
   isAuth,
   async (req, res) => {

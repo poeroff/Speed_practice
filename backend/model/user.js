@@ -15,6 +15,7 @@ const User = sequelize.define("users", {
     },
     nickname: {
         type: Sequelize.STRING,
+        primaryKey: true,
         allowNull: false,
     },
     password: {
@@ -24,6 +25,11 @@ const User = sequelize.define("users", {
     description: {
         type: Sequelize.STRING,
         allowNull: true,
+    },
+    imageurl : {
+        type : Sequelize.STRING,
+        allowNull : true
+
     },
     follow: {
         type: Sequelize.STRING,
