@@ -41,7 +41,9 @@ exports.getImage = async (req, res) => {
 
 exports.getPostList = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+     
+    });
 
     // 게시글 이미지 경로
     const postsWithImagePaths = posts.map((post) => ({
@@ -61,23 +63,18 @@ exports.getPostList = async (req, res) => {
 // 특정 게시글 조회
 exports.getWrite = async (req, res) => {
   const postId = req.params.postId;
-
   try {
     const post = await Post.findByPk(postId);
-
     if (!post) {
       return res.status(404).json({ message: "게시글을 찾을 수 없습니다." });
     }
-
     // 이미지 파일의 경로 추가하기.
     let imagePath;
-
     if (post.image) {
       imagePath = `/images/${path.basename(post.image)}`;
     } else {
       imagePath = null;
     }
-
     return res.status(200).json({
       content: post.content,
       imagePath: imagePath,

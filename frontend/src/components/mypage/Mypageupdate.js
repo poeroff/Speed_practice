@@ -34,19 +34,17 @@ const Mypageupdate = (props) => {
         event.preventDefault();
         console.log("heelo")
         fetch("http://localhost:8080/userUpdate",{
-            method :"POST",
+            method :"PUT",
             headers :{
                 "Content-type" : "application/json",
                 "Authorization" : accessToken
             },
-            body: JSON.stringify({nickname : nicknameupdate.current.value ,description : descriptiondupdate.current.value })
+            body: JSON.stringify({nickname : nicknameupdate.current.value , description : descriptiondupdate.current.value })
         }).then(res => res.json()).catch(err => {console.log(err)})
         props.valid();
 
     }
-    const outupdatemodal = () => {
-        props.valid();
-    }
+ 
     return (
 
         <MDBModal className={classes.modal} open={updatemypage} setOpen={setupdatemypage} tabIndex='-1'>
