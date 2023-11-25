@@ -1,5 +1,6 @@
 const User = require("../model/user");
 
+//유저정보 검색
 exports.searchId = async (req, res, next) => {
     const { search } = req.params;
     try {
@@ -16,6 +17,7 @@ exports.searchId = async (req, res, next) => {
     }
 };
 
+//검색 후 가져오기
 exports.searchInfo = async (req, res) => {
     const { search } = req.params;
     try {
