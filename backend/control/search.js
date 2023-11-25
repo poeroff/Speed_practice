@@ -5,11 +5,6 @@ const { Op } = require("sequelize");
 exports.searchId = async (req, res, next) => {
     const { search } = req.params;
     try {
-        const searchUser = await User.findAll({ where: { nickname:  {[Op.like]: `%${search}%`} },  });
-       
-        const searchinfo = []
-        
-        searchUser.map(user=>{
         const searchUser = await User.findAll({ where: { nickname: { [Op.like]: `%${search}%` } } });
 
         const searchinfo = [];
@@ -24,8 +19,7 @@ exports.searchId = async (req, res, next) => {
         if (!searchUser) {
             return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
         }
-        
-        return res.status(200).json({ searchinfo });
+
         next();
     } catch (error) {
         return res.status(500).json({ message: "서버 오류" });
@@ -43,7 +37,7 @@ exports.searchInfo = async (req, res) => {
         if (!userInfo) {
             return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
         }
-        return res.status(200).json({ user: userInfo });
+        return res.status(200).json({ userInfo });
     } catch (error) {
         return res.status(500).json({ message: "서버 오류" });
     }
