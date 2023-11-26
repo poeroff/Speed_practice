@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
 const path = require("path");
-const User= require("../model/user")
+const User = require("../model/user");
 
 // 게시글 작성
 exports.postWrite = [
@@ -11,17 +11,17 @@ exports.postWrite = [
   async (req, res) => {
     const content = req.body.content;
     const image = req.file.path;
-    const user = await User.findOne({where : {userId :res.locals.user }})
-    console.log(user.nickname)
-  
+    const user = await User.findOne({ where: { userId: res.locals.user } });
+    console.log(user.nickname);
+    console.log(res.locals.user);
 
     try {
       await Post.create({
         content: content,
         image: image,
-        Like : 0,
-        userId :res.locals.user,
-        nickname : user.nickname
+        Like: 0,
+        userId: res.locals.user,
+        nickname: user.nickname,
       });
 
       return res
@@ -48,16 +48,16 @@ exports.getImage = async (req, res) => {
 exports.getPostList = async (req, res) => {
   try {
     const posts = await Post.findAll({
-     
+      //  [sequelize.literal('RAND()')], // RAND() 함수를 사용 랜덤으로 정렬하기 findAll한 함수에서 해당 함수를 이용하여 랜덤으로. googling 결과 ORDER BUY RAND() 와 동일한 기능을 한다고 함.
+      order: [[sequelize, literal("RAND()")]],
     });
 
     // 게시글 이미지 경로
     const postsWithImagePaths = posts.map((post) => ({
       content: post.content,
       imagePath: post.image ? `/image/${path.basename(post.image)}` : null,
-      
     }));
-    console.log(postsWithImagePaths)
+    console.log(postsWithImagePaths);
 
     res.status(200).json(postsWithImagePaths);
   } catch (err) {
