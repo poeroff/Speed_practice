@@ -13,6 +13,7 @@ const sequelize = require("./util/database");
 const User = require("./model/user");
 const post = require("./model/post");
 // const comment = require("./model/comments");
+const commentRouter = require("./routes/comment")
 const date = new Date();
 const formattedDate = date.toISOString().replace(/:/g, "-").replace(/\..+/, "");
 const storage = multer.diskStorage({
@@ -37,6 +38,7 @@ app.use(userRouter);
 app.use(UserRouter);
 app.use(PostRouter);
 app.use(searchRouter);
+app.use(commentRouter)
 
 sequelize.sync().then((result) => {
   console.log("8080번 포트에 연결이 성공하였습니다");

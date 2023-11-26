@@ -98,7 +98,6 @@ export async function loader() {
                 "Content-type": "application/json",
                 "Authorization": sessionStorage.getItem("loginId")
             },
-
         })
 
         if (!respone.ok) {

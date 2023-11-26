@@ -8,6 +8,7 @@ import Signup from "./components/auth/Signup";
 import Mypage, {loader as mypageloader } from "./components/mypage/Mypage"
 import Post  from "./components/post/Post";
 import Seachmypage ,{loader as Seachloader} from "./components/search/Seachmypage"
+import Mainpost , {loader as mainpostloader } from "./components/mainpage/MainPost";
 
 import Header from "./components/mainpage/header/Header";
 
@@ -15,6 +16,7 @@ import Header from "./components/mainpage/header/Header";
 //errorElement : <Error></Error>
 const router = createBrowserRouter([
    {path: "/" ,element: <Root></Root>, children : [
+    {index : true, element:<Main></Main>, loader : Mainloader},
     {index : true, element:<Main></Main>, loader : Mainloader},
     {path : "login" , element : <Login></Login>},
     {path : "signup" , element : <Signup> </Signup>},

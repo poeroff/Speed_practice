@@ -32,7 +32,6 @@ const Post = (props) => {
     event.preventDefault();
     if(imageSrc && Inputpost.current.value){
       const formData = new FormData();
-      console.log(imageSrc)
       formData.append("image", imageSrc);
       formData.append("content", Inputpost.current.value);
   
