@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { LoginActions } from '../../../store/Login-action';
 import { useNavigate } from 'react-router-dom';
 import Post from '../../post/Post';
+import logo from "../../image/logo.jpg"
+import Home from "../../image/home.png"
 
 
 import {MDBModal, MDBModalDialog, MDBSwitch, MDBModalContent, MDBModalHeader, MDBModalTitle, MDBModalFooter, MDBContainer, MDBNavbar, MDBNavbarToggler, MDBIcon, MDBNavbarLink, MDBBtn, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,} from 'mdb-react-ui-kit';
@@ -71,7 +73,7 @@ const Header = (props) => {
           <MDBCollapse navbar open={openBasic}>
 
             <form className={classes.Login}>
-              <Link to="/"><AiFillHome size="40" /></Link>
+              <Link to="/"><img src={Home} alt="Home" style={{ width: '50px', height: '50px' }} /> </Link>
 
             </form>
 
@@ -90,7 +92,7 @@ const Header = (props) => {
             <MDBBtn className={classes.post} onClick={toggleOpen} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>creat post <CgMathPlus size="25" /></MDBBtn>
             {basicModal && <Post valid={toggleOpen}></Post>}
 
-            {!openBasic && <h1 className={classes.title}><Link to="/" > SIX SENSE </Link></h1>}
+            {!openBasic && <h1 className={classes.title}><Link to="/" > PURR~ </Link></h1>}
             
             
 

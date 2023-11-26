@@ -13,11 +13,23 @@ exports.userSearch = [
         where: { userId: res.locals.user },
       });
 
-      const post = await Post.findAll({ userId : res.locals.user})
+      const post = await Post.findAll({where : { userId : res.locals.user}})
+      const postCount =  await Post.count({where : { userId : res.locals.user}})
+     
+    
+      
+    
+      
+      console.log(postCount)
+  
 
       if (!findUser) {
         // 사용자를 찾지 못한 경우
         return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+      }
+      if(!findUser){
+        return res.status(404).json({ message: "게시물이 없습니다" });
+
       }
 
       // 사용자를 찾은 경우 해당 사용자의 정보 반환
@@ -30,7 +42,7 @@ exports.userSearch = [
       };
 
       console.log(user);
-      return res.status(200).json({ user , post });
+      return res.status(200).json({ user , post , postCount });
     } catch (error) {
       // 예외 처리
       console.error(error);

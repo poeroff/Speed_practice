@@ -1,28 +1,33 @@
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 import React from 'react';
 
-import { useEffect,  useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import classes from "./Searchmypage.module.css"
+import Seachpost from './Seachpost';
 
 
 
 const Searchmypage = () => {
   const data = useLoaderData();
+  console.log(data)
+
  
-  
- 
-    return (
-        <div className="gradient-custom-2" >
+
+
+
+  return (
+    <div className="gradient-custom-2" >
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol lg="9" xl="7">
             <MDBCard>
               <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
-                
-                  <MDBCardImage src= {data.imageurl ? "http://localhost:8080/"+ data.imageurl : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"}
+
+                  <MDBCardImage src={data.imageurl ? "http://localhost:8080/" + data.imageurl : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"}
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
-                
+
                 </div>
                 <div className="ms-3" style={{ marginTop: '130px' }}>
                   <MDBTypography tag="h5">{data.nickname}</MDBTypography>
@@ -32,7 +37,7 @@ const Searchmypage = () => {
               <div className="p-4 text-black" style={{ backgroundColor: '#f8f9fa' }}>
                 <div className="d-flex justify-content-end text-center py-1">
                   <div>
-                    <MDBCardText className="mb-1 h5">0</MDBCardText>
+                    <MDBCardText className="mb-1 h5">{data.postCount}</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Photos</MDBCardText>
                   </div>
                   <div className="px-3">
@@ -46,10 +51,14 @@ const Searchmypage = () => {
                 </div>
               </div>
               <MDBCardBody className="text-black p-4">
-               
+
                 <div className="d-flex justify-content-between align-items-center mb-4">
-                  <MDBCardText className="lead fw-normal mb-0">Recent photos</MDBCardText>
-                  <MDBCardText className="mb-0"><a href="#!" className="text-muted">Show all</a></MDBCardText>
+                  <MDBCardText className="lead fw-normal mb-0">게시물</MDBCardText>
+                </div>
+                <div className={classes.myimg}>
+                  {data.post.map(post => (
+                      <Seachpost key={post.postId} id = {post.postId} image={post.image}></Seachpost>
+                  ))}
                 </div>
               </MDBCardBody>
             </MDBCard>
@@ -57,25 +66,25 @@ const Searchmypage = () => {
         </MDBRow>
       </MDBContainer>
     </div>
-    )
+  )
 
 }
 export default Searchmypage;
 
 
-export async function loader({params}){
-  try { 
+export async function loader({ params }) {
+  try {
     const respone = await fetch("http://localhost:8080/mypage/" + params.userId)
 
-    if(!respone.ok){
-       throw new Error("error")
+    if (!respone.ok) {
+      throw new Error("error")
     }
     const data = await respone.json();
-    
+
     return data
 
   }
-  catch(err) {
+  catch (err) {
     return err;
   }
 

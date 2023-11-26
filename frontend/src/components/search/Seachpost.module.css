@@ -1,15 +1,9 @@
-
-
 .mypageimg img {
     margin:  0px auto;
     width: 80%;
     margin: 10%;
     height: 150px;
     object-fit: cover; 
-}
-.xicon{
-    float: right;
-    margin-right: 10%;
 }
 
 .detail{

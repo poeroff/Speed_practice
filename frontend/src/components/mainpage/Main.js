@@ -3,20 +3,23 @@ import Header from "./header/Header";
 import classes from "./Main.module.css"
 import { useLoaderData } from "react-router-dom";
 import MainPost from "./MainPost"
-import { useEffect, useState } from "react";
-import { BiSolidUpArrowSquare } from "react-icons/bi";
 
-import React from "react";
+import { BiSolidUpArrowSquare } from "react-icons/bi";
+import React, { useState } from 'react';
+
+
+
 
 
 const Main = () => {
   const data = useLoaderData();
+  const [staticModal, setStaticModal] = useState(false);
+
+  const toggleOpen = () => setStaticModal(!staticModal);
   console.log(data)
-  const [postdetail , setpostdetail] = useState(false)
   
   const handleScroll = () => {
     if (!window.scrollY) return
-
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -29,11 +32,12 @@ const Main = () => {
 
   return (
     <React.Fragment >
-      {/* <div>
+      <div>
         {data && data.map((item) => (
-          <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
+          <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath} ></MainPost>
         ))}
-      </div> */}
+      </div>
+   
 
       <div className={classes.topBtn_wrap}>
           <BiSolidUpArrowSquare className={classes.topBtn}  onClick={handleScroll} size="50"/>
