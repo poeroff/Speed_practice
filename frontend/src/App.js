@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     {path : "login" , element : <Login></Login>},
     {path : "signup" , element : <Signup> </Signup>},
     {path : "mypage" , children:[
-      {index: true ,  element : <Mypage></Mypage>},
+      {index: true ,  element : <Mypage></Mypage>, loader : mypageloader},
       {path : ":userId", element: <Seachmypage></Seachmypage>, loader : Seachloader}
     ]},
     
