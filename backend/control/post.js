@@ -59,7 +59,7 @@ exports.getPostList = async (req, res) => {
       content: post.content,
       imagePath: post.image ? `/image/${path.basename(post.image)}` : null,
     }));
-    console.log(postsWithImagePaths);
+   
 
     res.status(200).json(postsWithImagePaths);
   } catch (err) {

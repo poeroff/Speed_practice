@@ -16,7 +16,7 @@ const Main = () => {
   const [staticModal, setStaticModal] = useState(false);
 
   const toggleOpen = () => setStaticModal(!staticModal);
-  console.log(data)
+ 
   
   const handleScroll = () => {
     if (!window.scrollY) return
@@ -34,25 +34,16 @@ const Main = () => {
     <React.Fragment >
       <div>
         {data && data.map((item) => (
-          <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath} ></MainPost>
+          <MainPost key = {item.postId} id ={item.postId}title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath} ></MainPost>
         ))}
       </div>
    
-
       <div className={classes.topBtn_wrap}>
           <BiSolidUpArrowSquare className={classes.topBtn}  onClick={handleScroll} size="50"/>
       </div>
     </React.Fragment>
 
   )
-
-
-
-
-
-
-
-
 }
 
 export default Main;

@@ -3,10 +3,11 @@ import classes from "./Mypagepost.module.css"
 import { CgClose } from "react-icons/cg";
 
 import { useSelector } from 'react-redux';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef ,useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import { MDBInput } from 'mdb-react-ui-kit';
 import Modal from 'react-bootstrap/Modal';
+
 
 
 
@@ -19,6 +20,7 @@ const Mypagepost = (props) => {
     const [show, setShow] = useState(false);
     const [detailimg, setdetailimg] = useState(true)
     const comment = useRef();
+    const [comments , setcomments] = useState()
     
     
     
@@ -31,8 +33,23 @@ const Mypagepost = (props) => {
     const commenthendler = () => {
         setdetailimg(true)
     }
-    const submithandler = () => {
-        
+    const submithandler = (event) => {
+        event.preventDefault()
+        console.log(comment.current.value)
+       fetch("http://localhost:8080/comment",{
+        method : "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": accessToken
+        },
+        body : JSON.stringify({content : comment.current.value ,postId : props.id})
+       }).then(res => {
+        res.json()
+       }).then(resData => {
+        console.log(resData)
+       }).catch(err => {
+        console.log(err);
+       })
     }
 
 
@@ -55,6 +72,11 @@ const Mypagepost = (props) => {
             });
 
     }
+    useEffect(() => {
+        fetch("http://localhost:8080/comment/" + props.id)
+        .then(res => res.json()).then(resData => { setcomments(resData.commentsList)}).catch(err => {console.log(err);})
+
+    },[comment])
     return (
         <>
         <div className={classes.mypageimg}>
@@ -76,10 +98,13 @@ const Mypagepost = (props) => {
                 <Modal.Body>
                     
                      <img src={"http://localhost:8080/" + props.image} className={classes.detailimg} />
-                     <form onSubmit={submithandler}>
-                        {detailimg && <MDBInput className={classes.detailinput} wrapperClass='mb-4' label='comment' type='text' ref={comment}/>}
-
-                     </form>
+                     { detailimg && <form onSubmit={submithandler}>
+                             <MDBInput className={classes.detailinput} wrapperClass='mb-4' label='comment' type='text' ref={comment}/>
+                            {comments && comments.map(comment => (
+                             <p key = {comment.commentId}> {comment.Content} </p>
+                         ))}
+                         
+                         </form>}
                    
       
                 </Modal.Body>

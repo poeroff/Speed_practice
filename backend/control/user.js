@@ -18,8 +18,6 @@ exports.userSearch = [
      
     
       
-    
-      
       console.log(postCount)
   
 
@@ -41,7 +39,7 @@ exports.userSearch = [
         // 기타 원하는 사용자 정보를 추가할 수 있음
       };
 
-      console.log(user);
+      
       return res.status(200).json({ user , post , postCount });
     } catch (error) {
       // 예외 처리
