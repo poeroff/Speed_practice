@@ -54,7 +54,7 @@ exports.getPostList = async (req, res) => {
     });
     // 게시글 이미지 경로
     const postsWithImagePaths = posts.map((post) => ({
-      userId: post.postId,
+      postId: post.postId,
       title: post.nickname,
       content: post.content,
       imagePath: post.image ? `/image/${path.basename(post.image)}` : null,
@@ -135,6 +135,7 @@ exports.deletePost = [
   isAuth,
   async (req, res) => {
     const { postId } = req.params;
+    console.log("hello")
 
     // 게시글 위치 확인
     const post = await Post.findAll();

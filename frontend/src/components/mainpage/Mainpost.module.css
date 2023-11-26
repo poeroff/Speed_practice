@@ -13,6 +13,7 @@
 
 .mainpost {
     width: 100%;
+ 
     overflow-x: hidden;
     /* 또는 다른 너비를 지정하세요 */
    
@@ -57,3 +58,16 @@
     width: 25%;
 
 }
+.detail{
+    width: 100%;
+   text-align: center;
+}
+.detailimg{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 3%;
+    object-fit: cover; 
+    height: 400px;
+
+}
+

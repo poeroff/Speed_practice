@@ -48,3 +48,10 @@
     
 
 }
+.myimg { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; /* 이미지 간격 조절 */
+   
+}
+

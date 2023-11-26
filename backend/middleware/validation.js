@@ -6,7 +6,7 @@ exports.isAuth = (req, res, next) => {
  
 
   const [authType, authToken] = (authorization || "").split(" ");
-  console.log(authType , authToken)
+  
 
   if (!authToken || authType !== "Bearer") {
     res.status(400).send({
