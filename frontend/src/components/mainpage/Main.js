@@ -28,7 +28,7 @@ const Main = () => {
   return (
     <React.Fragment >
       <div>
-        {data.map((item) => (
+        {data && data.map((item) => (
           <MainPost key = {item.userId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
         ))}
       </div>
