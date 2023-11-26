@@ -9,7 +9,7 @@ router.post(
     "/signup",
     [
         check("UserId", "Please enter a Id with only numbers and text and at least 6 characters.")
-            .isLength({ min: 6 })
+            .isLength({ min: 5 })
             .isAlphanumeric()
             .custom(async(value, { req }) => {
                 const valid = await User.findAll()
@@ -26,7 +26,7 @@ router.post(
             min: 3,
         }),
         check("Password", "Please enter a password with only numbers and text and at least 6 characters.")
-            .isLength({ min: 6 })
+            .isLength({ min: 5 })
             .isAlphanumeric()
             .trim(),
         check("CheckPassword")
