@@ -25,7 +25,7 @@ const Searchmypage = () => {
               <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
 
-                  <MDBCardImage src={data.imageurl ? "http://localhost:8080/" + data.imageurl : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"}
+                  <MDBCardImage src={data.imageurl ? "http://localhost:8080/" + data.imageurl : "https://t1.daumcdn.net/news/202105/25/petzzi/20210525062913108ttvf.jpg"}
                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
 
                 </div>

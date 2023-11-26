@@ -19,7 +19,7 @@ const Mainpost = (props) => {
     const [Like, setLiek] = useState(false);
     const [show, setShow] = useState(false);
     const comment = useRef();
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 

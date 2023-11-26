@@ -33,7 +33,7 @@ const MyPage = () => {
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
                                 <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '180px', height: "150px" }}>
-                                    <MDBCardImage className={classes.mypageimg} src={data.user.imageurl ? "http://localhost:8080/" + data.user.imageurl : "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"} alt="Generic placeholder image" style={{ objectFit: 'cover', zIndex: '1' }} />
+                                    <MDBCardImage className={classes.mypageimg} src={data.user.imageurl ? "http://localhost:8080/" + data.user.imageurl : "https://t1.daumcdn.net/news/202105/25/petzzi/20210525062913108ttvf.jpg"} alt="Generic placeholder image" style={{ objectFit: 'cover', zIndex: '1' }} />
                                     <MDBBtn outline color="dark" onClick={imgtoogle} style={{ height: '36px', overflow: 'visible' }}>
                                         Edit profile
                                     </MDBBtn>
