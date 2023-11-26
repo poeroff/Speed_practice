@@ -40,8 +40,8 @@ exports.userSearch = [
 
 // 회원 이름 설명 정보 수정
 exports.userUpdate = [isAuth, async (req, res) => {
-  const { nickname, description } = req.body;
-  console.log(nickname)
+  const {description } = req.body;
+ 
  
 
   try {

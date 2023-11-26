@@ -11,6 +11,7 @@ import React from "react";
 
 const Main = () => {
   const data = useLoaderData();
+  const [postdetail , setpostdetail] = useState(false)
   
   const handleScroll = () => {
     if (!window.scrollY) return
