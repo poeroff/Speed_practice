@@ -1,5 +1,6 @@
 const User = require("../model/user");
 const { isAuth } = require("../middleware/validation");
+
 // 회원 정보 조회
 exports.userSearch = [
   isAuth,

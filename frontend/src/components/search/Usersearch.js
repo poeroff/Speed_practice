@@ -13,6 +13,7 @@ const Usersearch = () => {
 
 
   const inputhandler = (event) => {
+    
     event.preventDefault();
 
     fetch("http://localhost:8080/" + event.target.value, {
@@ -20,9 +21,10 @@ const Usersearch = () => {
         "Content-Type": "application/json"
       },
     }).then(res => res.json()).then(resData => setusersearch(resData.searchinfo)).catch(err => console.log(err))
+   
 
   }
-
+  
   return (
     <form onSubmit={inputhandler}>
       <MDBModal open={serarch} setOpen={setsearch} tabIndex='-1'>
@@ -38,9 +40,6 @@ const Usersearch = () => {
                 </p>
               
             ))}
-
-
-
           </MDBModalContent>
 
         </MDBModalDialog>

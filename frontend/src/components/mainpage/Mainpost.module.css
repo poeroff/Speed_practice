@@ -20,7 +20,6 @@
 }
 .postimg{
     position: relative;
- 
     width: 100%;
     padding-top: 15%; 
     margin: 0 auto;
@@ -30,15 +29,17 @@
 
 
 }
+
+.maintitle{
+    font-weight: bold;
+}
+
 .postoption{
     position: relative;
- 
-    width: 100%;
-  
+    width: 58%;
     margin: 0 auto;
-    margin-left: 11%;
+    margin-left: 12%;
     text-align: center;
-    
     margin-top: 1%;
 
 }
@@ -49,12 +50,10 @@
 
 .content {
     font-weight: bold;
-   
     border: 1px solid gray;
     border-left: none;
     border-right: none;
     margin: 0 auto;
-    text-align: center;
     width: 25%;
 
 }

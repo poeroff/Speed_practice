@@ -5,6 +5,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 
 import { FiAlignJustify } from "react-icons/fi";
+import { GiAmericanShield } from "react-icons/gi";
+
 
 const Mainpost = (props) => {
 
@@ -25,10 +27,8 @@ const Mainpost = (props) => {
         <div className={classes.mainpost}>
             <form>
                 <div  className={classes.postoption}>
-                    <FiAlignJustify size="25" onClick={optionhandler}/>
-                    {option && <div className={classes.abc}>
-                        <p> ajsdhsj</p>
-                    </div>}
+                    <div className={classes.maintitle}><GiAmericanShield /> {props.title}</div>
+                  
                 </div>
                 <div className={classes.postimg}>
                     <img className={classes.Mainimg} src={props.imageUrl} />
@@ -37,7 +37,7 @@ const Mainpost = (props) => {
                     <br></br>
                     {/* {!Like && <AiOutlineHeart size="30" onClick={Likerhandler} />}
                 {Like && <AiFillHeart size="30" onClick={Likerhandler} />} */}
-                    <p> {props.content}</p>
+                    <p>  {props.title} : {props.content}</p>
                 </div>
 
             </form>

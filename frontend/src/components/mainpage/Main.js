@@ -5,12 +5,14 @@ import { useLoaderData } from "react-router-dom";
 import MainPost from "./MainPost"
 import { useEffect, useState } from "react";
 import { BiSolidUpArrowSquare } from "react-icons/bi";
+
 import React from "react";
 
 
 const Main = () => {
-  const [showButton, setShowButton] = useState(false);
   const data = useLoaderData();
+  const [postdetail , setpostdetail] = useState(false)
+  
   const handleScroll = () => {
     if (!window.scrollY) return
 
@@ -26,16 +28,13 @@ const Main = () => {
 
   return (
     <React.Fragment >
-    
-
       <div>
-        {data.map((item) => (
-          <MainPost content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
+        {data && data.map((item) => (
+          <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
         ))}
       </div>
 
       <div className={classes.topBtn_wrap}>
-
           <BiSolidUpArrowSquare className={classes.topBtn}  onClick={handleScroll} size="50"/>
       </div>
     </React.Fragment>

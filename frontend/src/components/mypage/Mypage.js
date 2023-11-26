@@ -2,62 +2,30 @@
 import classes from "./Mypage.module.css"
 import React, { useEffect } from 'react';
 import { AiTwotoneHighlight } from "react-icons/ai";
-
-import {
-
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-    MDBInput,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBCollapse,
-} from 'mdb-react-ui-kit';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 import plus from "../image/plus.png"
 import { useState } from "react";
 import Profile from "./Profile";
 import Mypageupdate from "./Mypageupdate";
 import { useSelector } from 'react-redux';
-import { redirect } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+
 
 
 const MyPage = () => {
     
     const [updateimg, setupdateimg] = useState(false);
     const [updatemypage, setupdatemypage] = useState(false);
-    const [nickname , setnickname] = useState();
-    const [description , setdescription] = useState();
-    const [imageurl  , setimageurl] = useState();
     const imgtoogle = () => {setupdateimg(!updateimg); console.log("heelo")};
 
     const updatetoogle = () => setupdatemypage(!updatemypage);
 
-    const accessToken = useSelector(state =>state.login.Loginvalid)
+    const data = useLoaderData();
+    console.log(data.user);
+    
   
 
-    useEffect(()=>{
-        fetch("http://localhost:8080/userSearch",{
-            method : "GET",
-            headers :{
-                "Content-type" : "application/json",
-                "Authorization" : accessToken
-            },
-        }).then(res => res.json()).then(resData => {
-            setdescription(resData.user.description)
-            setnickname(resData.user.nickname)
-            console.log("http://localhost:8080/" + resData.user.imageurl)
-            setimageurl(resData.user.imageurl)
 
-        }).catch(err => {
-            console.log(err)
-        })
-
-    },[])
 
     return (
         <div className="gradient-custom-2" >
@@ -67,14 +35,14 @@ const MyPage = () => {
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
                                 <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '180px', height:"150px" }}>
-                                    <MDBCardImage className ={classes.mypageimg} src={"http://localhost:8080/" + imageurl} alt="Generic placeholder image" style={{  objectFit: 'cover', zIndex: '1' }} />
+                                    <MDBCardImage className ={classes.mypageimg} src={data.user.imageurl ? "http://localhost:8080/" + data.user.imageurl :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" } alt="Generic placeholder image" style={{  objectFit: 'cover', zIndex: '1' }} />
                                     <MDBBtn outline color="dark" onClick={imgtoogle} style={{ height: '36px', overflow: 'visible' }}>
                                         Edit profile
                                     </MDBBtn>
                                 </div>
                                 <div className="ms-3" style={{ marginTop: '130px' }}>
-                                    <MDBTypography tag="h5">{nickname}</MDBTypography>
-                                    <MDBCardText>{description}</MDBCardText>
+                                    <MDBTypography tag="h5">{data.user.nickname}</MDBTypography>
+                                    <MDBCardText>{data.user.description}</MDBCardText>
                                 </div>
                                 {updateimg && <Profile valid = {imgtoogle} ></Profile>}
 
@@ -114,3 +82,33 @@ const MyPage = () => {
     );
 }
 export default MyPage;
+
+
+export async function loader(){
+    try { 
+        const respone = await fetch("http://localhost:8080/userSearch" ,{
+            method : "GET",
+            headers :{
+                "Content-type" : "application/json",
+                "Authorization" : sessionStorage.getItem("loginId")
+            },
+
+        })
+    
+        if(!respone.ok){
+           throw new Error("error")
+        }
+        const data = await respone.json();
+        
+        return data
+    
+      }
+      catch(err) {
+        return err;
+      }
+    
+   
+  
+
+}
+

@@ -39,7 +39,7 @@ const Mypageupdate = (props) => {
                 "Content-type" : "application/json",
                 "Authorization" : accessToken
             },
-            body: JSON.stringify({nickname : nicknameupdate.current.value , description : descriptiondupdate.current.value })
+            body: JSON.stringify({description : descriptiondupdate.current.value })
         }).then(res => res.json()).catch(err => {console.log(err)})
         props.valid();
 
@@ -56,14 +56,7 @@ const Mypageupdate = (props) => {
                     </MDBModalHeader>
                     <MDBModalBody>
                         <form>
-                            <div className='mb-3'>
-                                    <MDBInput
-                                        labelClass='col-form-label'
-                                        label='Nickname:'
-                                        ref={nicknameupdate}
-                                        
-                                    />
-                            </div>
+                          
                             <div className='mb-3'>
                                     <MDBInput
                                         
