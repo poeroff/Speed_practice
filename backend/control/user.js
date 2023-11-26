@@ -1,5 +1,9 @@
 const User = require("../model/user");
+const Post = require("../model/post");
+const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
+const path = require("path");
 
 // 회원 정보 조회
 exports.userSearch = [
@@ -64,5 +68,22 @@ exports.userUpdate = [isAuth, async (req, res) => {
     // 예외 처리
     console.error(error);
     res.status(500).json({ message: "서버 오류" });
+  }
+}];
+
+// 사용자 게시글 조회
+exports.userPostList = [isAuth, async (req, res) => {
+  try {
+    const posts = await Post.findAll( { where: { userId: res.locals.user } } );
+
+    const postsWithImagePaths = posts.map((post) => ({
+      content: post.content,
+      imagePath: post.image ? `/images/${path.basename(post.image)}` : null,
+    }));
+
+    res.status(200).json(postsWithImagePaths);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "서버 오류로 인하여 조회할 수 없습니다." });
   }
 }];
