@@ -13,6 +13,7 @@ const Usersearch = () => {
 
 
   const inputhandler = (event) => {
+    
     event.preventDefault();
 
     fetch("http://localhost:8080/" + event.target.value, {
@@ -20,6 +21,7 @@ const Usersearch = () => {
         "Content-Type": "application/json"
       },
     }).then(res => res.json()).then(resData => setusersearch(resData.searchinfo)).catch(err => console.log(err))
+   
 
   }
   
@@ -38,7 +40,6 @@ const Usersearch = () => {
                 </p>
               
             ))}
-
           </MDBModalContent>
 
         </MDBModalDialog>

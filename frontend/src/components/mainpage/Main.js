@@ -30,7 +30,7 @@ const Main = () => {
     <React.Fragment >
       <div>
         {data && data.map((item) => (
-          <MainPost key = {item.userId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
+          <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
         ))}
       </div>
 
