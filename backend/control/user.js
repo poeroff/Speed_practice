@@ -1,5 +1,6 @@
 const User = require("../model/user");
 const { isAuth } = require("../middleware/validation");
+const Post = require("../model/post")
 
 // 회원 정보 조회
 exports.userSearch = [
@@ -11,6 +12,8 @@ exports.userSearch = [
       const findUser = await User.findOne({
         where: { userId: res.locals.user },
       });
+
+      const post = await Post.findAll({ userId : res.locals.user})
 
       if (!findUser) {
         // 사용자를 찾지 못한 경우
@@ -27,7 +30,7 @@ exports.userSearch = [
       };
 
       console.log(user);
-      return res.status(200).json({ user });
+      return res.status(200).json({ user , post });
     } catch (error) {
       // 예외 처리
       console.error(error);

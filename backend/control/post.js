@@ -4,6 +4,8 @@ const { validationResult } = require("express-validator");
 const { isAuth } = require("../middleware/validation");
 const path = require("path");
 const User = require("../model/user");
+const { Sequelize, literal } = require("sequelize")
+
 
 // 게시글 작성
 exports.postWrite = [
@@ -49,9 +51,8 @@ exports.getPostList = async (req, res) => {
   try {
     const posts = await Post.findAll({
       //  [sequelize.literal('RAND()')], // RAND() 함수를 사용 랜덤으로 정렬하기 findAll한 함수에서 해당 함수를 이용하여 랜덤으로. googling 결과 ORDER BUY RAND() 와 동일한 기능을 한다고 함.
-      order: [[sequelize, literal("RAND()")]],
+      order: [[Sequelize, literal("RAND()")]],
     });
-
     // 게시글 이미지 경로
     const postsWithImagePaths = posts.map((post) => ({
       userId : post.postId,

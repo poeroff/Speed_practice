@@ -11,6 +11,7 @@ import React from "react";
 
 const Main = () => {
   const data = useLoaderData();
+  console.log(data)
   const [postdetail , setpostdetail] = useState(false)
   
   const handleScroll = () => {
@@ -28,11 +29,11 @@ const Main = () => {
 
   return (
     <React.Fragment >
-      <div>
+      {/* <div>
         {data && data.map((item) => (
           <MainPost key = {item.postId} title = {item.title} content = {item.content} imageUrl = {"http://localhost:8080" + item.imagePath}></MainPost>
         ))}
-      </div>
+      </div> */}
 
       <div className={classes.topBtn_wrap}>
           <BiSolidUpArrowSquare className={classes.topBtn}  onClick={handleScroll} size="50"/>
