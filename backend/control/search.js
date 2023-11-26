@@ -33,7 +33,7 @@ exports.searchInfo = async (req, res) => {
     const { search } = req.params;
     try {
         const userInfo = await User.findOne({
-            where: { nickname: search },
+            where: { userId: search },
             attributes: ["nickname", "description"],
         });
         if (!userInfo) {

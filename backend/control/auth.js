@@ -19,7 +19,9 @@ exports.postsign = async (req, res) => {
     accountId: UserId,
     nickname: Nickname,
     password: hashPassword,
-    description : "소개를 적어주세요"
+    description : "소개를 적어주세요",
+    follow : 0,
+    following : 0 
   });
   return res.status(200).json({ message: [] });
   // const isusername = await User.findOne({ where: { username: username } });

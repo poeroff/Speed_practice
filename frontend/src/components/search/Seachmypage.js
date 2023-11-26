@@ -2,14 +2,14 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 import React from 'react';
 
 import { useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 
 
 const Searchmypage = () => {
-    useEffect(() => {
-       
-
-    }, [])
+  const data = useLoaderData();
+  
+    
 
     
     return (
@@ -25,22 +25,22 @@ const Searchmypage = () => {
                 
                 </div>
                 <div className="ms-3" style={{ marginTop: '130px' }}>
-                  <MDBTypography tag="h5">Andy Horwitz</MDBTypography>
-                  <MDBCardText>New York</MDBCardText>
+                  <MDBTypography tag="h5">{data.userInfo.nickname}</MDBTypography>
+                  <MDBCardText>{data.userInfo.description}</MDBCardText>
                 </div>
               </div>
               <div className="p-4 text-black" style={{ backgroundColor: '#f8f9fa' }}>
                 <div className="d-flex justify-content-end text-center py-1">
                   <div>
-                    <MDBCardText className="mb-1 h5">253</MDBCardText>
+                    <MDBCardText className="mb-1 h5">0</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Photos</MDBCardText>
                   </div>
                   <div className="px-3">
-                    <MDBCardText className="mb-1 h5">1026</MDBCardText>
+                    <MDBCardText className="mb-1 h5">0</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Followers</MDBCardText>
                   </div>
                   <div>
-                    <MDBCardText className="mb-1 h5">478</MDBCardText>
+                    <MDBCardText className="mb-1 h5">0</MDBCardText>
                     <MDBCardText className="small text-muted mb-0">Following</MDBCardText>
                   </div>
                 </div>
@@ -61,3 +61,22 @@ const Searchmypage = () => {
 
 }
 export default Searchmypage;
+
+
+export async function loader({params}){
+  try { 
+    const respone = await fetch("http://localhost:8080/mypage/" + params.userId)
+
+    if(!respone.ok){
+       throw new Error("error")
+    }
+    const data = await respone.json();
+    
+    return data
+
+  }
+  catch(err) {
+    return err;
+  }
+
+}

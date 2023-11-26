@@ -56,14 +56,7 @@ const Mypageupdate = (props) => {
                     </MDBModalHeader>
                     <MDBModalBody>
                         <form>
-                            <div className='mb-3'>
-                                    <MDBInput
-                                        labelClass='col-form-label'
-                                        label='Nickname:'
-                                        ref={nicknameupdate}
-                                        
-                                    />
-                            </div>
+                          
                             <div className='mb-3'>
                                     <MDBInput
                                         

@@ -8,7 +8,8 @@ import { useState } from "react";
 import Profile from "./Profile";
 import Mypageupdate from "./Mypageupdate";
 import { useSelector } from 'react-redux';
-import { redirect } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+
 
 
 const MyPage = () => {
@@ -34,6 +35,7 @@ const MyPage = () => {
             },
         }).then(res => res.json()).then(resData => {
             setdescription(resData.user.description)
+            console.log(resData.user.nickname)
             setnickname(resData.user.nickname)
             setimageurl(resData.user.imageurl)
 
@@ -51,7 +53,7 @@ const MyPage = () => {
                         <MDBCard>
                             <div className="rounded-top text-white d-flex flex-row abc" style={{ backgroundColor: '#000', height: '200px' }}>
                                 <div className="ms-4 mt-5 d-flex flex-column " style={{ width: '180px', height:"150px" }}>
-                                    <MDBCardImage className ={classes.mypageimg} src={"http://localhost:8080/" + imageurl} alt="Generic placeholder image" style={{  objectFit: 'cover', zIndex: '1' }} />
+                                    <MDBCardImage className ={classes.mypageimg} src={imageurl ? "http://localhost:8080/" + imageurl :"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp" } alt="Generic placeholder image" style={{  objectFit: 'cover', zIndex: '1' }} />
                                     <MDBBtn outline color="dark" onClick={imgtoogle} style={{ height: '36px', overflow: 'visible' }}>
                                         Edit profile
                                     </MDBBtn>
@@ -98,3 +100,5 @@ const MyPage = () => {
     );
 }
 export default MyPage;
+
+

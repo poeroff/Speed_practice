@@ -22,7 +22,7 @@ const Usersearch = () => {
     }).then(res => res.json()).then(resData => setusersearch(resData.searchinfo)).catch(err => console.log(err))
 
   }
-  console.log(usersearch)
+  
   return (
     <form onSubmit={inputhandler}>
       <MDBModal open={serarch} setOpen={setsearch} tabIndex='-1'>
