@@ -135,17 +135,30 @@ exports.deletePost = [
   isAuth,
   async (req, res) => {
     const { postId } = req.params;
+
     // 게시글 위치 확인
-    const posts = await Post.findAll();
-    const index = posts.findIndex((post) => `${post.postId}` === postId);
+    const post = await Post.findAll();
+
+    const index = post.findIndex((post) => `${post.postId}` === postId);
 
     if (index === -1) {
       // 게시글이 없는 경우 404 에러 반환
       return res.status(404).json({ message: "존재하지 않는 게시글입니다." });
     } else {
-      //   index.splice(index, 1);
+      const imagePath = post.image;
 
-      await posts[index].destroy();
+      await post[index].destroy();
+
+      if (imagePath) {
+        const fullPath = path.join(__dirname, "..", "image", imagePath);
+
+        try {
+          await fs.unlink(fullPath);
+          console.log("이미지 삭제 완료");
+        } catch (error) {
+          console.error("삭제 중 오류발생하였음", error);
+        }
+      }
       res.send({ message: " 게시글이 삭제 되었습니다." });
     }
   },
