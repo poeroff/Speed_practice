@@ -1,6 +1,7 @@
 const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require("dotenv").config()
 
 const { validationResult } = require("express-validator");
 
@@ -53,7 +54,7 @@ exports.postlogin = async (req, res) => {
       .status(400)
       .json({ errorMessage: "패스워드가 일치하지 않습니다." });
   }
-  const accessToken = jwt.sign({ Id: finduser.userId }, "wow", {
+  const accessToken = jwt.sign({ Id: finduser.userId }, process.env.SECRETKEY, {
     expiresIn: "12h",
   });
 

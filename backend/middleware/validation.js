@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/user");
+require("dotenv").config()
 
 exports.isAuth = (req, res, next) => {
   const { authorization } = req.headers;
@@ -16,7 +17,7 @@ exports.isAuth = (req, res, next) => {
   }
 
   try {
-    const user = jwt.verify(authToken, "wow");
+    const user = jwt.verify(authToken, process.env.SECRETKEY);
   
    
     res.locals.user = user.Id;
